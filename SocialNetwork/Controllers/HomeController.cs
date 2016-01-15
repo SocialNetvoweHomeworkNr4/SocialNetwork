@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using BusinessLogic.Services;
 
 namespace SocialNetwork.Controllers
 {
     public class HomeController : Controller
     {
+        IWeapon weapon;
+
+        public HomeController(IWeapon weapon)
+        {
+            this.weapon = weapon;
+        }
+
+
         public ActionResult Index()
         {
             return View();
