@@ -48,8 +48,14 @@ namespace SocialNetwork.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel model)
         {
+            if(ModelState.IsValid)
+            {
 
-            return View();
+
+
+            }
+
+            return View("Register", model);
         }
     }
 }
