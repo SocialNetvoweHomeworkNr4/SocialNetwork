@@ -23,5 +23,6 @@ namespace BusinessLogic.Models
         public string Interests { get; set; }
         public string About { get; set; }
         public string Avatar { get; set; }
+        public string Password { get; set; }
     }
 }
