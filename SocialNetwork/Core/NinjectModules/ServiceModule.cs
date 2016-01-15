@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using BusinessLogic.Services;
 
-namespace SocialNetwork.NinjectModules
+namespace SocialNetwork.Core.NinjectModules
 {
     public class ServiceModule : NinjectModule
     {
