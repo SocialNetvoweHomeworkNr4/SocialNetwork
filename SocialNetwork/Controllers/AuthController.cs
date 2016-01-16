@@ -4,6 +4,7 @@ using BusinessLogic.Services;
 using SocialNetwork.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -53,6 +54,14 @@ namespace SocialNetwork.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+
+            var genders = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Selected = true, Text = "Vīrietis", Value = "true"},
+                new SelectListItem { Selected = false, Text = "Sieviete", Value = "false"},
+            },"Value","Text");
+            ViewBag.Genders = genders;
+
             return View();
         }
 
@@ -73,6 +82,13 @@ namespace SocialNetwork.Controllers
 
                     return RedirectToAction("Login", "Auth");
                 }
+
+            var genders = new SelectList(new List<SelectListItem>
+            {
+                new SelectListItem { Selected = true, Text = "Vīrietis", Value = "true"},
+                new SelectListItem { Selected = false, Text = "Sieviete", Value = "false"},
+            }, "Value", "Text");
+            ViewBag.Genders = genders;
 
             return View("Register", user);
         }

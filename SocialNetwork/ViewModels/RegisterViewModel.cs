@@ -21,6 +21,9 @@ namespace SocialNetwork.ViewModels
         [Display(Name ="E-pasts")]
         public string Email { get; set; }
 
+        [Display(Name = "Dzimums")]
+        public bool Gender { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet paroli")]
         [Display(Name = "Parole")]
         [MinLength(length:5,ErrorMessage = "Parolei jābūt vismaz 5 simbolu garai")]
