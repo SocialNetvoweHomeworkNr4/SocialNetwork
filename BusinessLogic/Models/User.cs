@@ -16,7 +16,7 @@ namespace BusinessLogic.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Nullable<byte> Gender { get; set; }
+        public byte Gender { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
