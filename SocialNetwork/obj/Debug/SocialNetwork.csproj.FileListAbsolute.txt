@@ -1,0 +1,71 @@
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\SocialNetwork.dll.config
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\SocialNetwork.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\SocialNetwork.pdb
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\Antlr3.Runtime.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\Microsoft.Web.Infrastructure.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\Newtonsoft.Json.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Helpers.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Mvc.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Optimization.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Razor.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Deployment.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Razor.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\WebGrease.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Helpers.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Mvc.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Optimization.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.Razor.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Deployment.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Razor.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\Antlr3.Runtime.pdb
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\Newtonsoft.Json.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.csprojResolveAssemblyReference.cache
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.pdb
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\BusinessLogic.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\EntityFramework.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\EntityFramework.SqlServer.dll
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\BusinessLogic.pdb
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\EntityFramework.xml
+c:\users\arvils\documents\visual studio 2013\Projects\SocialNetwork\SocialNetwork\bin\EntityFramework.SqlServer.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.csprojResolveAssemblyReference.cache
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\SocialNetwork.dll.config
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\SocialNetwork.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\SocialNetwork.pdb
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Antlr3.Runtime.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\BusinessLogic.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\EntityFramework.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\EntityFramework.SqlServer.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Newtonsoft.Json.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Helpers.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Mvc.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Optimization.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Razor.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Razor.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\WebGrease.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\BusinessLogic.pdb
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\EntityFramework.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\EntityFramework.SqlServer.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Helpers.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Mvc.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Optimization.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.Razor.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\System.Web.WebPages.Razor.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Antlr3.Runtime.pdb
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Newtonsoft.Json.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\obj\Debug\SocialNetwork.pdb
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Ninject.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Ninject.Web.Common.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Ninject.Web.Mvc.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\WebActivatorEx.dll
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Ninject.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Ninject.Web.Common.xml
+C:\Users\Arvils\Desktop\SocialNetwork\SocialNetwork\bin\Ninject.Web.Mvc.xml
