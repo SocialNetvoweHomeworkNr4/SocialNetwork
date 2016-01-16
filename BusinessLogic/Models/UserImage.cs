@@ -12,27 +12,21 @@ namespace BusinessLogic.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class UserImage
     {
-        public User()
+        public UserImage()
         {
-            this.UserImages = new HashSet<UserImage>();
             this.UserImageComments = new HashSet<UserImageComment>();
         }
     
+        public int ImageID { get; set; }
         public int UserID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public byte Gender { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Interests { get; set; }
-        public string About { get; set; }
-        public string Avatar { get; set; }
-        public string Password { get; set; }
+        public string Comment { get; set; }
+        public bool Deleted { get; set; }
+        public string FileName { get; set; }
+        public System.DateTime Date { get; set; }
     
-        public virtual ICollection<UserImage> UserImages { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<UserImageComment> UserImageComments { get; set; }
     }
 }

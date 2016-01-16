@@ -1,0 +1,59 @@
+﻿@model SocialNetwork.ViewModels.UserImagesViewModel
+
+@{
+    ViewBag.Title = "User Image Gallery";
+}
+
+@Styles.Render("~/bundles/jquery-file-upload/css")
+
+<h2>User Image Gallery</h2>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="container">
+            <br>
+            <span class="btn btn-success fileinput-button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Select file...</span>
+                <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+            <br>
+            <br>
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+            <div id="files" class="files"></div>
+            <br>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @{
+        int counter = 1;
+    
+        foreach (var image in Model.Images)
+        {
+            <div class="col-sm-3">
+                <a href="/Image/Edit/@Model.UserId/@image.ImageID"><img class="user-image" src="/Images/@image.FileName" /></a>
+            </div>
+
+            if (counter % 4 == 0)
+            {
+                <div class="clearfix custom-class"></div>
+            } 
+
+            counter++;
+        }
+    
+    }
+</div>
+
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jquery-file-upload/js")
+}
+
+

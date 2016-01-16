@@ -5,7 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="82c16575579145bb82d0e5cfd20a2791" Name="Diagram1">
-        <EntityTypeShape EntityType="LinkMeModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LinkMeModel.User" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LinkMeModel.UserImage" Width="1.5" PointX="9.75" PointY="0.75" />
+        <AssociationConnector Association="LinkMeModel.FK_UserImage_User" />
+        <EntityTypeShape EntityType="LinkMeModel.Friend" Width="1.5" PointX="2.75" PointY="2" />
+        <EntityTypeShape EntityType="LinkMeModel.Invintation" Width="1.5" PointX="2.75" PointY="4.5" />
+        <EntityTypeShape EntityType="LinkMeModel.UserImageComment" Width="1.5" PointX="10.125" PointY="4.875" />
+        <AssociationConnector Association="LinkMeModel.FK_UserImageComment_User" />
+        <AssociationConnector Association="LinkMeModel.FK_UserImageComment_UserImage" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

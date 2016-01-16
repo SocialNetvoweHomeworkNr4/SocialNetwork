@@ -4,7 +4,29 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LinkMeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LinkMeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentUserID" Type="int" Nullable="false" />
+          <Property Name="FriendID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_9EF84E_linkme.dbo.Invintations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Invintations">
+          <Key>
+            <PropertyRef Name="InvintationID" />
+            <PropertyRef Name="CurrentUserID" />
+            <PropertyRef Name="RequestedUserID" />
+            <PropertyRef Name="Accepted" />
+          </Key>
+          <Property Name="InvintationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentUserID" Type="int" Nullable="false" />
+          <Property Name="RequestedUserID" Type="int" Nullable="false" />
+          <Property Name="Accepted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -19,13 +41,106 @@
           <Property Name="Interests" Type="varchar" MaxLength="500" />
           <Property Name="About" Type="varchar" MaxLength="500" />
           <Property Name="Avatar" Type="varchar" MaxLength="255" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_9EF84E_linkme.dbo.UserImageComment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserImageComment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+            <PropertyRef Name="ImageID" />
+            <PropertyRef Name="Text" />
+            <PropertyRef Name="AuthorID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_UserImage_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImageComment_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserImageComment" Type="Self.UserImageComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserImageComment">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImageComment_UserImage">
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="1" />
+          <End Role="UserImageComment" Type="Self.UserImageComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserImage">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="UserImageComment">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LinkMeModelStoreContainer">
+          <EntitySet Name="Friend" EntityType="Self.Friend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invintations" EntityType="Self.Invintations" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Invintations].[InvintationID] AS [InvintationID], 
+    [Invintations].[CurrentUserID] AS [CurrentUserID], 
+    [Invintations].[RequestedUserID] AS [RequestedUserID], 
+    [Invintations].[Accepted] AS [Accepted]
+    FROM [dbo].[Invintations] AS [Invintations]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserImageComment" EntityType="Self.UserImageComment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserImageComment].[CommentID] AS [CommentID], 
+    [UserImageComment].[ImageID] AS [ImageID], 
+    [UserImageComment].[Text] AS [Text], 
+    [UserImageComment].[AuthorID] AS [AuthorID], 
+    [UserImageComment].[Date] AS [Date]
+    FROM [dbo].[UserImageComment] AS [UserImageComment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_UserImage_User" Association="Self.FK_UserImage_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserImage" EntitySet="UserImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImageComment_User" Association="Self.FK_UserImageComment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserImageComment" EntitySet="UserImageComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImageComment_UserImage" Association="Self.FK_UserImageComment_UserImage">
+            <End Role="UserImage" EntitySet="UserImage" />
+            <End Role="UserImageComment" EntitySet="UserImageComment" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LinkMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -43,11 +158,114 @@
           <Property Name="Interests" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="About" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserImages" Relationship="LinkMeModel.FK_UserImage_User" FromRole="User" ToRole="UserImage" />
+          <NavigationProperty Name="UserImageComments" Relationship="LinkMeModel.FK_UserImageComment_User" FromRole="User" ToRole="UserImageComment" />
         </EntityType>
         <EntityContainer Name="LinkMeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserImages" EntityType="LinkMeModel.UserImage" />
+          <AssociationSet Name="FK_UserImage_User" Association="LinkMeModel.FK_UserImage_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserImage" EntitySet="UserImages" />
+          </AssociationSet>
+          <EntitySet Name="Friends" EntityType="LinkMeModel.Friend" />
+          <EntitySet Name="Invintations" EntityType="LinkMeModel.Invintation" />
+          <EntitySet Name="UserImageComments" EntityType="LinkMeModel.UserImageComment" />
+          <AssociationSet Name="FK_UserImageComment_User" Association="LinkMeModel.FK_UserImageComment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserImageComment" EntitySet="UserImageComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImageComment_UserImage" Association="LinkMeModel.FK_UserImageComment_UserImage">
+            <End Role="UserImage" EntitySet="UserImages" />
+            <End Role="UserImageComment" EntitySet="UserImageComments" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="LinkMeModel.FK_UserImage_User" FromRole="UserImage" ToRole="User" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserImageComments" Relationship="LinkMeModel.FK_UserImageComment_UserImage" FromRole="UserImage" ToRole="UserImageComment" />
+        </EntityType>
+        <Association Name="FK_UserImage_User">
+          <End Type="LinkMeModel.User" Role="User" Multiplicity="1" />
+          <End Type="LinkMeModel.UserImage" Role="UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentUserID" Type="Int32" Nullable="false" />
+          <Property Name="FriendID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invintation">
+          <Key>
+            <PropertyRef Name="InvintationID" />
+            <PropertyRef Name="CurrentUserID" />
+            <PropertyRef Name="RequestedUserID" />
+            <PropertyRef Name="Accepted" />
+          </Key>
+          <Property Name="InvintationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentUserID" Type="Int32" Nullable="false" />
+          <Property Name="RequestedUserID" Type="Int32" Nullable="false" />
+          <Property Name="Accepted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserImageComment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+            <PropertyRef Name="ImageID" />
+            <PropertyRef Name="Text" />
+            <PropertyRef Name="AuthorID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="LinkMeModel.FK_UserImageComment_User" FromRole="UserImageComment" ToRole="User" />
+          <NavigationProperty Name="UserImage" Relationship="LinkMeModel.FK_UserImageComment_UserImage" FromRole="UserImageComment" ToRole="UserImage" />
+        </EntityType>
+        <Association Name="FK_UserImageComment_User">
+          <End Type="LinkMeModel.User" Role="User" Multiplicity="1" />
+          <End Type="LinkMeModel.UserImageComment" Role="UserImageComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserImageComment">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserImageComment_UserImage">
+          <End Type="LinkMeModel.UserImage" Role="UserImage" Multiplicity="1" />
+          <End Type="LinkMeModel.UserImageComment" Role="UserImageComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserImage">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="UserImageComment">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -68,6 +286,48 @@
                 <ScalarProperty Name="About" ColumnName="About" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserImages">
+            <EntityTypeMapping TypeName="LinkMeModel.UserImage">
+              <MappingFragment StoreEntitySet="UserImage">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="LinkMeModel.Friend">
+              <MappingFragment StoreEntitySet="Friend">
+                <ScalarProperty Name="FriendID" ColumnName="FriendID" />
+                <ScalarProperty Name="CurrentUserID" ColumnName="CurrentUserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invintations">
+            <EntityTypeMapping TypeName="LinkMeModel.Invintation">
+              <MappingFragment StoreEntitySet="Invintations">
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+                <ScalarProperty Name="RequestedUserID" ColumnName="RequestedUserID" />
+                <ScalarProperty Name="CurrentUserID" ColumnName="CurrentUserID" />
+                <ScalarProperty Name="InvintationID" ColumnName="InvintationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserImageComments">
+            <EntityTypeMapping TypeName="LinkMeModel.UserImageComment">
+              <MappingFragment StoreEntitySet="UserImageComment">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
