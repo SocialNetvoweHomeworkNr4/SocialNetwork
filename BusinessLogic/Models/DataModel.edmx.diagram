@@ -6,6 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="82c16575579145bb82d0e5cfd20a2791" Name="Diagram1">
         <EntityTypeShape EntityType="LinkMeModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LinkMeModel.Friend" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="LinkMeModel.UserImage" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="LinkMeModel.FK_UserImage_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

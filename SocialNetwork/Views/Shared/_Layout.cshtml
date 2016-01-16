@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using SocialNetwork.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,14 +17,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("LinkMe", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.MenuItem("Home", "Index", "Home")</li>
+                    <li>@Html.MenuItem("About", "About", "Home")</li>
+                    <li>@Html.MenuItem("Contact", "Contact", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        @Html.MenuItem("Ielogoties", "Login", "Auth", "<span class='glyphicon glyphicon-log-in'></span>")
+                        @Html.MenuItem("Reģistrēties", "Register", "Auth", "<span class='glyphicon glyphicon-tag'></span>")
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="#" id="profile-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sveiks, @User.Identity.Name.ToString() <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Profile")"><span class="glyphicon glyphicon-user"></span> Profils</a></li>
+                                <li><a href="@Url.Action("Logout","Auth")"><span class='glyphicon glyphicon-log-out'></span> Izlogoties</a></li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+
+
+
             </div>
         </div>
     </div>

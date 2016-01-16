@@ -14,9 +14,47 @@
     <Property Name="Interests" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="About" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserImages" Relationship="LinkMeModel.FK_UserImage_User" FromRole="User" ToRole="UserImage" />
   </EntityType>
   <EntityContainer Name="LinkMeEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Friends" EntityType="LinkMeModel.Friend" />
+    <EntitySet Name="UserImages" EntityType="LinkMeModel.UserImage" />
+    <AssociationSet Name="FK_UserImage_User" Association="LinkMeModel.FK_UserImage_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserImage" EntitySet="UserImages" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentUserID" Type="Int32" Nullable="false" />
+    <Property Name="FriendID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="UserImage">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="LinkMeModel.FK_UserImage_User" FromRole="UserImage" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UserImage_User">
+    <End Type="LinkMeModel.User" Role="User" Multiplicity="1" />
+    <End Type="LinkMeModel.UserImage" Role="UserImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserImage">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
