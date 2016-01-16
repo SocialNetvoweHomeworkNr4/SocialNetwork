@@ -20,7 +20,7 @@ namespace BusinessLogic.Providers
             {
                 try
                 {
-                    users user = (from u in _db.Users
+                    User user = (from u in _db.Users
                                  where u.Email == username
                                  select u).FirstOrDefault();
 
@@ -30,8 +30,9 @@ namespace BusinessLogic.Providers
                         isValid = true;
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
+                    var err = ex.Message;
                     isValid = false;
                 }
             }
@@ -48,7 +49,7 @@ namespace BusinessLogic.Providers
                 {
                     using (DataContext _db = new DataContext())
                     {
-                        users user = new users();
+                        User user = new User();
                         user.Email = email;
 
                         user.Password = Crypto.HashPassword(password);

@@ -9,10 +9,16 @@ namespace SocialNetwork.ViewModels
     public class RegisterViewModel
     {
 
-        public int UserId { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet savu vārdu")]
+        [Display(Name = "Vārds")]
+        public string Firstname { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet savu uzvārdu")]
+        [Display(Name = "Uzvārds")]
+        public string Lastname { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet e-pasta adresi")]
-        [Display(Name ="E-pasta adrese")]
+        [Display(Name ="E-pasts")]
         public string Email { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet paroli")]

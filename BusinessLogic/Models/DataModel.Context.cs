@@ -25,6 +25,6 @@ namespace BusinessLogic.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

@@ -12,17 +12,18 @@ namespace BusinessLogic.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class User
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public byte Gender { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
+        public Nullable<byte> Gender { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Interests { get; set; }
         public string About { get; set; }
         public string Avatar { get; set; }
         public string Password { get; set; }
+        public int UserID { get; set; }
     }
 }

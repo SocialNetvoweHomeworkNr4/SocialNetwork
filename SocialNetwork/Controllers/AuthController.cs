@@ -1,8 +1,12 @@
-﻿using SocialNetwork.ViewModels;
+﻿using BusinessLogic.Models;
+using BusinessLogic.Providers;
+using BusinessLogic.Services;
+using SocialNetwork.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -10,6 +14,15 @@ namespace SocialNetwork.Controllers
 {
     public class AuthController : Controller
     {
+
+        private IUserService userService;
+        private CustomMembershipProvider provider;
+        public AuthController(IUserService userService)
+        {
+            this.userService = userService;
+            provider = new CustomMembershipProvider();
+        }
+
         // GET: Auth
         [HttpGet]
         public ActionResult Login()
@@ -23,7 +36,7 @@ namespace SocialNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.Email, model.Password))
+                if (provider.ValidateUser(model.Email, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.Email, true);
                     return RedirectToAction("Index", "Profile");
@@ -40,22 +53,28 @@ namespace SocialNetwork.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel user)
         {
-            if(ModelState.IsValid)
-            {
+                if (ModelState.IsValid)
+                {
+                    var model = new User();
 
+                    model.FirstName = user.Firstname;
+                    model.LastName = user.Lastname;
+                    model.Email = user.Email;
+                    model.Password = Crypto.HashPassword(user.Password);
 
+                    userService.Add(model);
 
-            }
+                    return RedirectToAction("Login", "Auth");
+                }
 
-            return View("Register", model);
+            return View("Register", user);
         }
     }
 }

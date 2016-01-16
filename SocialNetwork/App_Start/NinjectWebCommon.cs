@@ -10,6 +10,8 @@ namespace SocialNetwork.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using BusinessLogic.Services;
+    using BusinessLogic.Models;
 
     public static class NinjectWebCommon 
     {
@@ -61,7 +63,8 @@ namespace SocialNetwork.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Load(new Core.NinjectModules.ServiceModule());
+            kernel.Bind<IDataContext>().To<DataContext>().InRequestScope();
+            kernel.Bind<IUserService>().To<UserService>();
         }        
     }
 }

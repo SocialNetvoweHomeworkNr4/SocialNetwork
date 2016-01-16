@@ -5,13 +5,6 @@ namespace SocialNetwork.Controllers
 {
     public class HomeController : Controller
     {
-        IWeapon weapon;
-
-        public HomeController(IWeapon weapon)
-        {
-            this.weapon = weapon;
-        }
-
 
         public ActionResult Index()
         {
