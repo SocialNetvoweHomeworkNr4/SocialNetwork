@@ -13,10 +13,10 @@ namespace BusinessLogic.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LinkMeEntities : DbContext
+    public partial class DataContext : DbContext
     {
-        public LinkMeEntities()
-            : base("name=LinkMeEntities")
+        public DataContext()
+            : base("name=DataContext")
         {
         }
     
