@@ -33,10 +33,18 @@ namespace BusinessLogic.Services
                 return ex.Message.ToString();
             }
         }
+        public int[] GetInvitationIDsByUserId(int userId)
+        {
+            List<int> IDs = dataContext.Invintations.Where(a => a.CurrentUserID == userId).Select(a => a.RequestedUserID).ToList<int>();
+            IDs.AddRange(dataContext.Friends.Where(a => a.FriendID == userId).Select(a => a.CurrentUserID).ToList<int>());
+
+            return IDs.ToArray<int>();
+        }
     }
 
     public interface IInvitationService : IBaseService<Invintation>
     {
         string InviteUser(int currentUserId, int userId);
+        int[] GetInvitationIDsByUserId(int userId);
     }
 }
