@@ -10,6 +10,7 @@ using System;
 using System.Globalization;
 using BusinessLogic.Helpers;
 using AutoMapper;
+using SocialNetwork.ViewModels;
 
 namespace Website.Controllers
 {
@@ -29,7 +30,12 @@ namespace Website.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var profileModel = new ProfileViewModel();
+
             var profInfoModel = new ProfileInfoViewModel();
+
+
+
             int id = provider.GetUserId();
 
             if (id != 0)
@@ -44,7 +50,10 @@ namespace Website.Controllers
                 profInfoModel.Information = user.About;
                 profInfoModel.Avatar = user.Avatar;
 
-                return View(profInfoModel);
+                profileModel.ProfileInfoViewModel = profInfoModel;
+
+                //  return View(profInfoModel);
+                return View(profileModel);
             }
 
             return View();
@@ -157,12 +166,9 @@ namespace Website.Controllers
                 return View("NotExistingUser");
             }
 
-           
-
-
-
-
             return View("NotExistingUser");
         }
+
+
     }
 }
