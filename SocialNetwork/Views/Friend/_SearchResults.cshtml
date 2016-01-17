@@ -8,10 +8,23 @@
         foreach (var user in Model)
         {
             <div class="col-sm-3">
-                <img class="user-image" src="~/Images/@user.Avatar" />
-                <span class="label label-success friend-status">draugs</span>
-                <div>
-                    @user.FirstName
+                @if (user.Avatar != null)
+                {
+                    <img class="user-image" src="~/Images/Avatars/@user.Avatar" />
+                }
+                else
+                {
+                    <img class="user-image" src="~/Content/img/default.gif" />
+                }
+
+                @if (ViewContext.RouteData.GetRequiredString("action") == "Index")
+                {
+                    <button class="btn btn-danger remove-friend" data-userId="@user.UserID"><span class="glyphicon glyphicon-minus"></span></button>
+
+                }
+
+                <div class="text-center user-name">
+                    <h4>@user.FirstName @user.LastName</h4>
                 </div>
 
             </div>
@@ -25,6 +38,11 @@
         }
     }
 </div>
+
+<div id="removeFriendModal" class="modal fade" role="dialog">
+</div>
+
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page }))

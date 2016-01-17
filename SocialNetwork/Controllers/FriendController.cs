@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
+using BusinessLogic.Providers;
 using BusinessLogic.Services;
 using PagedList;
 using SocialNetwork.ViewModels;
@@ -18,22 +19,30 @@ namespace SocialNetwork.Controllers
         IFriendService friendService;
         IUserService userService;
 
+        private CustomMembershipProvider provider;
+
         public FriendController(IFriendService friendService, IUserService userService)
         {
             this.friendService = friendService;
             this.userService = userService;
+            this.provider = new CustomMembershipProvider();
         }
 
         // GET: Friend
+        [Authorize]
         public ActionResult Index(int? page)
         {
-            List<User> users = userService.GetAll().ToList();
+            int userId = provider.GetUserId();
+            IQueryable<User> users = userService.GetUsersByUserIDs(userId);
+
+            var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(users.ToList());
 
             pageNumber = (page ?? 1);
 
-            return View(users.ToPagedList(pageNumber, pageSize));
+            return View(allUsers.ToPagedList(pageNumber, pageSize));
         }
 
+        [Authorize]
         public ActionResult Discover(int? page)
         {
             var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(userService.GetAll().OrderBy(u => u.FirstName).ToList());
@@ -44,6 +53,7 @@ namespace SocialNetwork.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult FilterPeople(string firstName, string lastName, string gender, int? page)
         { 
             var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(userService.GetAll().ToList());
@@ -62,6 +72,7 @@ namespace SocialNetwork.Controllers
             return PartialView("~/Views/Friend/_SearchResults.cshtml", allUsers.OrderBy(u => u.FirstName).ToPagedList(pageNumber, pageSize));
         }
 
+        [Authorize]
         public ActionResult RemoveFriend(int userId)
         {
             User user = userService.GetById(userId);
