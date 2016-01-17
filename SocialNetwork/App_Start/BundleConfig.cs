@@ -23,6 +23,12 @@ namespace SocialNetwork
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-file-upload/js").Include(
+                "~/Scripts/Plugins/jQueryFileUpload/js/vendor/jquery.ui.widget.js",
+                "~/Scripts/Plugins/jQueryFileUpload/js/jquery.iframe-transport.js",
+                "~/Scripts/Plugins/jQueryFileUpload/js/jquery.fileupload.js",
+                "~/Scripts/images.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
@@ -36,6 +42,13 @@ namespace SocialNetwork
                  "~/Scripts/profile/profile.js",
                  "~/Scripts/plugins/datepicker/bootstrap-datepicker.js"
                 ));
+
+            bundles.Add(new StyleBundle("~/bundles/jquery-file-upload/css").Include(
+                "~/Scripts/Plugins/jQueryFileUpload/css/jquery.fileupload-ui.css",
+                "~/Scripts/Plugins/jQueryFileUpload/css/jquery.fileupload.css"
+            ));
+
+
         }
     }
 }

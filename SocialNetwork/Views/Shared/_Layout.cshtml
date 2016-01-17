@@ -40,6 +40,7 @@
                             <a href="#" id="profile-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sveiks, @User.Identity.Name.ToString() <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="@Url.Action("Index", "Profile")"><span class="glyphicon glyphicon-user"></span> Profils</a></li>
+                                <li><a href="@Url.Action("Index", "Friend")"><span class="glyphicon glyphicon-user"></span> Draugi</a></li>
                                 <li><a href="@Url.Action("Logout","Auth")"><span class='glyphicon glyphicon-log-out'></span> Izlogoties</a></li>
                             </ul>
                         </li>

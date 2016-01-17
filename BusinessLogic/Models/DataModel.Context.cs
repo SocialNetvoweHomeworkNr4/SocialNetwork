@@ -26,7 +26,9 @@ namespace BusinessLogic.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<UserImage> UserImages { get; set; }
+        public virtual DbSet<Friend> Friends { get; set; }
+        public virtual DbSet<Invintation> Invintations { get; set; }
+        public virtual DbSet<UserImageComment> UserImageComments { get; set; }
     }
 }

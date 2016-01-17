@@ -64,7 +64,11 @@ namespace SocialNetwork.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDataContext>().To<DataContext>().InRequestScope();
+
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IUserImageService>().To<UserImageService>();
+            kernel.Bind<IFriendService>().To<FriendService>();
+
         }        
     }
 }

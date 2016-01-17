@@ -17,6 +17,7 @@ namespace BusinessLogic.Models
         public User()
         {
             this.UserImages = new HashSet<UserImage>();
+            this.UserImageComments = new HashSet<UserImageComment>();
         }
     
         public int UserID { get; set; }
@@ -32,5 +33,6 @@ namespace BusinessLogic.Models
         public string Password { get; set; }
     
         public virtual ICollection<UserImage> UserImages { get; set; }
+        public virtual ICollection<UserImageComment> UserImageComments { get; set; }
     }
 }

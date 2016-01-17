@@ -14,12 +14,19 @@ namespace BusinessLogic.Models
     
     public partial class UserImage
     {
+        public UserImage()
+        {
+            this.UserImageComments = new HashSet<UserImageComment>();
+        }
+    
         public int ImageID { get; set; }
         public int UserID { get; set; }
-        public string Path { get; set; }
         public string Comment { get; set; }
         public bool Deleted { get; set; }
+        public string FileName { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual User User { get; set; }
+        public virtual ICollection<UserImageComment> UserImageComments { get; set; }
     }
 }
