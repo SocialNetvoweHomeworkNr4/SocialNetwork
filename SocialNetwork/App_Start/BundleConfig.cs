@@ -23,6 +23,9 @@ namespace SocialNetwork
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
+                "~/Scripts/Plugins/Handlebars/handlebars-v4.0.5.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery-file-upload/js").Include(
                 "~/Scripts/Plugins/jQueryFileUpload/js/vendor/jquery.ui.widget.js",
                 "~/Scripts/Plugins/jQueryFileUpload/js/jquery.iframe-transport.js",
@@ -44,8 +47,8 @@ namespace SocialNetwork
                 ));
 
             bundles.Add(new StyleBundle("~/bundles/jquery-file-upload/css").Include(
-                "~/Scripts/Plugins/jQueryFileUpload/css/jquery.fileupload-ui.css",
-                "~/Scripts/Plugins/jQueryFileUpload/css/jquery.fileupload.css"
+                "~/Content/Plugins/jQueryFileUpload/css/jquery.fileupload-ui.css",
+                "~/Content/Plugins/jQueryFileUpload/css/jquery.fileupload.css"
             ));
 
 

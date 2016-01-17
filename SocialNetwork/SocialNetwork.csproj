@@ -60,6 +60,14 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -137,20 +145,22 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ImageCommentViewModel.cs" />
-    <Compile Include="ViewModels\UserImagesViewModel.cs" />
+    <Compile Include="Helpers\ValueResolvers\CommentValueResolver.cs" />
+    <Compile Include="ViewModels\Image\ImageCommentViewModel.cs" />
+    <Compile Include="ViewModels\Image\UserImagesViewModel.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Profile\ProfileInfoViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\UserImageViewModel.cs" />
+    <Compile Include="ViewModels\Image\UserImageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-editable.css" />
@@ -176,6 +186,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\Image\images.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
@@ -185,15 +196,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\demo-ie8.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\demo.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload-noscript.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload-ui-noscript.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload-ui.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\style.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\img\loading.gif" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\img\progressbar.gif" />
+    <Content Include="Scripts\Plugins\Handlebars\handlebars-v4.0.5.js" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\demo-ie8.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\demo.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\style.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\img\loading.gif" />
+    <Content Include="Content\Plugins\jQueryFileUpload\img\progressbar.gif" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\app.js" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\cors\jquery.postmessage-transport.js" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\cors\jquery.xdr-transport.js" />
@@ -209,6 +221,7 @@
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\jquery.iframe-transport.js" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\main.js" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\profile\profile.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\site\index.js" />
@@ -227,13 +240,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Image\Index.cshtml" />
-    <Content Include="Views\Image\Edit.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\ProfileInfo.cshtml" />
+    <Content Include="Views\Friend\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
