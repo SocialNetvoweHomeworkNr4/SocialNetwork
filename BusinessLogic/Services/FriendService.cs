@@ -15,12 +15,12 @@ namespace BusinessLogic.Services
 
         public int[] GetFriendIDsByUserId(int userId)
         {
-            return dataContext.Friends.Where(a => a.CurrentUserID == userId).Select(a => a.FriendID).ToArray<int>();
+            return dataContext.Friends.Where(a => a.CurrentUserID == userId || a.FriendID == userId).Distinct().Select(a => a.FriendID).ToArray<int>();
         }
 
         public void DeleteFriend(int userId, int friendId)
         {
-            Friend friend = dataContext.Friends.FirstOrDefault(a => a.CurrentUserID == userId && a.FriendID == friendId);
+            Friend friend = dataContext.Friends.FirstOrDefault(a => (a.CurrentUserID == userId && a.FriendID == friendId) || (a.CurrentUserID == friendId && a.FriendID == userId));
 
             base.Delete(friend);
         }

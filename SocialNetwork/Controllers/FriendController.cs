@@ -80,7 +80,7 @@ namespace SocialNetwork.Controllers
             return PartialView("~/Views/Friend/Modals/RemoveFriendModal.cshtml", user);
         }
 
-        public ActionResult RemoveFriendAccept(int userId)
+        public ActionResult RemoveFriendAccept(int userId, int? page)
         {
             int currentUserId = provider.GetUserId();
 
@@ -89,8 +89,9 @@ namespace SocialNetwork.Controllers
             IQueryable<User> users = userService.GetUsersByUserIDs(currentUserId);
 
             var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(users.ToList());
+            pageNumber = (page ?? 1);
 
-            return PartialView("~/Views/Friend/_SearchResults.cshtml", allUsers);
+            return PartialView("~/Views/Friend/_SearchResults.cshtml", allUsers.ToPagedList(pageNumber, pageSize));
         }
     }
 }
