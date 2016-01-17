@@ -41,7 +41,10 @@ namespace Website.Controllers
                 profInfoModel.Information = user.About;
                 profInfoModel.Avatar = user.Avatar;
 
-            return View(profInfoModel);
+                return View(profInfoModel);
+            }
+
+            return View();
         }
 
         [HttpPost]
