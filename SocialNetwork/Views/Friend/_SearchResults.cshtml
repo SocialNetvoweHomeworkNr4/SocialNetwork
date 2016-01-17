@@ -20,7 +20,10 @@
                 @if (ViewContext.RouteData.GetRequiredString("action") == "Index")
                 {
                     <button class="btn btn-danger remove-friend" data-userId="@user.UserID"><span class="glyphicon glyphicon-minus"></span></button>
-
+                }
+                else
+                {
+                    <button class="btn btn-success add-friend" data-userId="@user.UserID"><span class="glyphicon glyphicon-plus"></span></button>
                 }
 
                 <div class="text-center user-name">

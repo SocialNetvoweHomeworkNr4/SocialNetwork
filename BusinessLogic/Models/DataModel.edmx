@@ -13,14 +13,9 @@
           <Property Name="CurrentUserID" Type="int" Nullable="false" />
           <Property Name="FriendID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_9EF84E_linkme.dbo.Invintations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Invintations">
           <Key>
             <PropertyRef Name="InvintationID" />
-            <PropertyRef Name="CurrentUserID" />
-            <PropertyRef Name="RequestedUserID" />
-            <PropertyRef Name="Accepted" />
           </Key>
           <Property Name="InvintationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CurrentUserID" Type="int" Nullable="false" />
@@ -108,16 +103,9 @@ warning 6002: The table/view 'DB_9EF84E_linkme.dbo.UserImageComment' does not ha
         </Association>
         <EntityContainer Name="LinkMeModelStoreContainer">
           <EntitySet Name="Friend" EntityType="Self.Friend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invintations" EntityType="Self.Invintations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Invintations" EntityType="Self.Invintations" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Invintations].[InvintationID] AS [InvintationID], 
-    [Invintations].[CurrentUserID] AS [CurrentUserID], 
-    [Invintations].[RequestedUserID] AS [RequestedUserID], 
-    [Invintations].[Accepted] AS [Accepted]
-    FROM [dbo].[Invintations] AS [Invintations]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="UserImageComment" EntityType="Self.UserImageComment" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [UserImageComment].[CommentID] AS [CommentID], 
@@ -217,9 +205,6 @@ warning 6002: The table/view 'DB_9EF84E_linkme.dbo.UserImageComment' does not ha
         <EntityType Name="Invintation">
           <Key>
             <PropertyRef Name="InvintationID" />
-            <PropertyRef Name="CurrentUserID" />
-            <PropertyRef Name="RequestedUserID" />
-            <PropertyRef Name="Accepted" />
           </Key>
           <Property Name="InvintationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CurrentUserID" Type="Int32" Nullable="false" />
