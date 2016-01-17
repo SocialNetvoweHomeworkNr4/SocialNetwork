@@ -23,7 +23,6 @@ namespace Website.Controllers
             this.userService = userService;
             provider = new CustomMembershipProvider();
         }
-        // GET: Profile
         public ActionResult Index()
         {
             var profInfoModel = new ProfileInfoViewModel();

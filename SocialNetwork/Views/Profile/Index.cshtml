@@ -1,18 +1,16 @@
 ﻿@model SocialNetwork.ViewModels.Profile.ProfileInfoViewModel
 @{
-    ViewBag.Title = "Profils";
+    ViewBag.Title = "Profile";
 }
 
 
 <div class="row">
     <div class="col-md-12">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#profile-information" aria-controls="profile-information" role="tab" data-toggle="tab">Profila informācija</a></li>
+            <li role="presentation" class="active"><a href="#profile-information" aria-controls="profile-information" role="tab" data-toggle="tab">Profile information</a></li>
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="profile-information">@Html.Partial("ProfileInfo")</div>
-            <div role="tabpanel" class="tab-pane" id="events">Pasākumi</div>
-            <div role="tabpanel" class="tab-pane" id="settings">Iestatījumi</div>
         </div>
     </div>
 

@@ -12,25 +12,25 @@ namespace SocialNetwork.ViewModels.Profile
         [Key]
         public int UserId { get; set; }
 
-        [Display(Name = "Vārds")]
+        [Display(Name = "Name")]
         public string Firstname { get; set; }
 
-        [Display(Name = "Uzvārds")]
+        [Display(Name = "Surname")]
         public string Lastname { get; set; }
 
-        [Display(Name = "Dzimšanas datums")]
+        [Display(Name = "Birth date")]
         public string BirthDate { get; set; }
 
-        [Display(Name = "Telefona nr.")]
+        [Display(Name = "Phone number")]
         public string Phone { get; set; }
 
-        [Display(Name = "Intereses")]
+        [Display(Name = "Interests")]
         public string Interests { get; set; }
 
-        [Display(Name = "Cita informācija")]
+        [Display(Name = "About")]
         public string Information { get; set; }
 
-        [Display(Name = "Profila attēls")]
+        [Display(Name = "Profile image")]
         public string ImagePath { get; set; }
         
     }
