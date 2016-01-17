@@ -31,7 +31,7 @@ textarea {
     margin: 15px;
 }
 
-.remove-friend
+.remove-friend, .add-friend
 {
     width: 30px;
     height: 20px;

@@ -18,13 +18,15 @@ namespace SocialNetwork.Controllers
         int pageNumber = 1;
         IFriendService friendService;
         IUserService userService;
+        IInvitationService invitationService;
 
         private CustomMembershipProvider provider;
 
-        public FriendController(IFriendService friendService, IUserService userService)
+        public FriendController(IFriendService friendService, IUserService userService, IInvitationService invitationService)
         {
             this.friendService = friendService;
             this.userService = userService;
+            this.invitationService = invitationService;
             this.provider = new CustomMembershipProvider();
         }
 
@@ -78,6 +80,16 @@ namespace SocialNetwork.Controllers
             User user = userService.GetById(userId);
 
             return PartialView("~/Views/Friend/Modals/RemoveFriendModal.cshtml", user);
+        }
+
+        [Authorize]
+        public ActionResult AddFriend(int userId)
+        {
+            User user = userService.GetById(userId);
+
+            var result = invitationService.InviteUser(provider.GetUserId(), userId);
+
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
     }
 }

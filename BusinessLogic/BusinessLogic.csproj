@@ -126,6 +126,7 @@
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\FriendService.cs" />
+    <Compile Include="Services\InvitationService.cs" />
     <Compile Include="Services\UserImageService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
