@@ -1,0 +1,49 @@
+﻿@model SocialNetwork.ViewModels.Profile.ProfileInfoViewModel
+
+@Styles.Render("~/Content/profile-styles")
+@Scripts.Render("~/bundles/profile-scripts")
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+        <div class="table-responsive">
+            <table class="table profile-info-tab-table">
+                <thead style="font-weight:bold; text-align:center;">
+                    <tr>
+                        <td>#</td>
+                        <td>@Html.DisplayNameFor(model => model.Firstname)</td>
+                        <td>@Html.DisplayNameFor(model => model.Lastname)</td>
+                        <td>@Html.DisplayNameFor(model => model.Phone)</td>
+                        <td>@Html.DisplayNameFor(model => model.Interests)</td>
+                        <td>@Html.DisplayNameFor(model => model.Information)</td>
+                        <td>@Html.DisplayNameFor(model => model.BirthDate)</td>
+                        <td>@Html.DisplayName("Profila attēls")</td>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center;">
+                    <tr class="active">
+                        <td>#</td>
+                        <td><a href="#" id="FirstName">@Html.DisplayFor(model => model.Firstname)</a></td>
+                        <td><a href="#" id="LastName">@Html.DisplayFor(model => model.Lastname)</a></td>
+                        <td><a href="#" id="PhoneNumber">@Html.DisplayFor(model => model.Phone)</a></td>
+                        <td><a href="#" id="Interests">@Html.DisplayFor(model => model.Interests)</a></td>
+                        <td><a href="#" id="About">@Html.DisplayFor(model => model.Information)</a></td>
+                        <td><a href="#" id="DateOfBirth">@Html.DisplayFor(model => model.BirthDate)</a></td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#image-modal">Nomainīt</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal modal-sm" tabindex="-1" role="dialog" aria-labelledby="image-modal" id="image-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            IMAGE
+        </div>
+    </div>
+</div>

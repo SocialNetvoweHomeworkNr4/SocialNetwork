@@ -71,7 +71,27 @@ namespace BusinessLogic.Providers
 
         public override MembershipUser GetUser(string email, bool userIsOnline)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DataContext _db = new DataContext())
+                {
+                    var users = from u in _db.Users
+                                where u.Email == email
+                                select u;
+                    if (users.Count() > 0)
+                    {
+                        User user = users.First();
+                        MembershipUser mm = new MembershipUser("MyMembershipProvider", user.FirstName, user.UserID, user.Email, null, null, false, false,DateTime.Now, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
+                        return mm;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                var msg = e.Message;
+                return null;
+            }
+            return null;
         }
 
         public override string ApplicationName
@@ -187,7 +207,7 @@ namespace BusinessLogic.Providers
             throw new NotImplementedException();
         }
 
-        /*
+        
         public int GetUserId()
         {
             string email = HttpContext.Current.User.Identity.Name;
@@ -196,6 +216,6 @@ namespace BusinessLogic.Providers
 
             return user == null ? 0 : Convert.ToInt32(user.ProviderUserKey);
         }
-        */
+        
     }
 }

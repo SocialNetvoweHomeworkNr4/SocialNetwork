@@ -36,6 +36,16 @@ namespace SocialNetwork
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/profile-styles").Include(
+                "~/Content/bootstrap-editable.css",
+                 "~/Content/datepicker.css"
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/profile-scripts").Include(
+                 "~/Scripts/plugins/bootstrap-editable/bootstrap-editable.js",
+                 "~/Scripts/profile/profile.js",
+                 "~/Scripts/plugins/datepicker/bootstrap-datepicker.js"
+                ));
+
             bundles.Add(new StyleBundle("~/bundles/jquery-file-upload/css").Include(
                 "~/Content/Plugins/jQueryFileUpload/css/jquery.fileupload-ui.css",
                 "~/Content/Plugins/jQueryFileUpload/css/jquery.fileupload.css"
