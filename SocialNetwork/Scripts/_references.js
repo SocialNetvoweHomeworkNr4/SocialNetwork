@@ -5,6 +5,7 @@
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-1.10.2.js" />
 /// <reference path="modernizr-2.6.2.js" />
+/// <reference path="plugins/handlebars/handlebars-v4.0.5.js" />
 /// <reference path="plugins/jqueryfileupload/js/app.js" />
 /// <reference path="plugins/jqueryfileupload/js/cors/jquery.postmessage-transport.js" />
 /// <reference path="plugins/jqueryfileupload/js/cors/jquery.xdr-transport.js" />

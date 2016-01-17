@@ -137,20 +137,23 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ImageCommentViewModel.cs" />
-    <Compile Include="ViewModels\UserImagesViewModel.cs" />
+    <Compile Include="ViewModels\Image\ImageCommentViewModel.cs" />
+    <Compile Include="ViewModels\Image\UserImagesViewModel.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\UserImageViewModel.cs" />
+    <Compile Include="ViewModels\Image\UserImageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -159,6 +162,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Compile Include="Helpers\ValueResolvers\CommentValueResolver.cs" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\images.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -169,15 +181,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\demo-ie8.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\demo.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload-noscript.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload-ui-noscript.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload-ui.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\jquery.fileupload.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\css\style.css" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\img\loading.gif" />
-    <Content Include="Scripts\Plugins\jQueryFileUpload\img\progressbar.gif" />
+    <Content Include="Scripts\Plugins\Handlebars\handlebars-v4.0.5.js" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\demo-ie8.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\demo.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\jquery.fileupload.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\css\style.css" />
+    <Content Include="Content\Plugins\jQueryFileUpload\img\loading.gif" />
+    <Content Include="Content\Plugins\jQueryFileUpload\img\progressbar.gif" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\app.js" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\cors\jquery.postmessage-transport.js" />
     <Content Include="Scripts\Plugins\jQueryFileUpload\js\cors\jquery.xdr-transport.js" />
@@ -212,7 +225,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Image\Index.cshtml" />
-    <Content Include="Views\Image\Edit.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
@@ -221,9 +233,6 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

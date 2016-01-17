@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using BusinessLogic.Models;
+using SocialNetwork.Helpers.ValueResolvers;
 using SocialNetwork.ViewModels;
-using System;
-using System.Collections.Generic;
+using SocialNetwork.ViewModels.Image;
 using System.Linq;
-using System.Web;
 
 namespace SocialNetwork.App_Start
 {
@@ -14,7 +13,8 @@ namespace SocialNetwork.App_Start
         {
             Mapper.CreateMap<UserImage, UserImageViewModel>()
                 .ForMember(d => d.Date, i => i.MapFrom(s => s.Date.ToString()))
-                .ForMember(d => d.Comments, i => i.MapFrom(s => s.UserImageComments.ToList()));
+                .ForMember(d => d.Comments, i => i.MapFrom(s => s.UserImageComments.ToList()))
+                .ForMember(d => d.Comment, i => i.ResolveUsing<CommentValueResolver>().FromMember(s => s.Comment));
 
             Mapper.CreateMap<UserImageViewModel, UserImage>();
 

@@ -1,4 +1,4 @@
-﻿@model SocialNetwork.ViewModels.UserImagesViewModel
+﻿@model SocialNetwork.ViewModels.Image.UserImagesViewModel
 
 @{
     ViewBag.Title = "User Image Gallery";
@@ -35,7 +35,7 @@
         foreach (var image in Model.Images)
         {
             <div class="col-sm-3">
-                <a href="/Image/Edit/@Model.UserId/@image.ImageID"><img class="user-image" src="/Images/@image.FileName" /></a>
+                <a href="" class="image-href" data-userId="@Model.UserId" data-image="@image.ImageID"><img class="user-image" src="/Images/@image.FileName" /></a>
             </div>
 
             if (counter % 4 == 0)
@@ -58,3 +58,27 @@
         });
     </script>
 }
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+<script id="image-template" type="text/x-handlebars-template">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{Comment}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <img class="large-image" src="/Images/{{ImageName}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

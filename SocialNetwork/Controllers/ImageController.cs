@@ -3,6 +3,7 @@ using BusinessLogic.Helpers;
 using BusinessLogic.Models;
 using BusinessLogic.Services;
 using SocialNetwork.ViewModels;
+using SocialNetwork.ViewModels.Image;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -74,19 +75,19 @@ namespace SocialNetwork.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Edit(int id, int imageId)
         {
             var image = userImageService.Get(s => s.UserID == id && s.ImageID == imageId);
 
+            var model = new UserImageViewModel();
+
             if (image != null)
             {
-                var model = Mapper.Map<UserImage, UserImageViewModel>(image);
-
-                return View(model);
+                model = Mapper.Map<UserImage, UserImageViewModel>(image);
             }
 
-            return Json("error!", JsonRequestBehavior.AllowGet);
+            return Json(new { model }, JsonRequestBehavior.AllowGet);
         }
     }
 }
