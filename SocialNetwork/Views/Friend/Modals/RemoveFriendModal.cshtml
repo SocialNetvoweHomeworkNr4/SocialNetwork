@@ -10,7 +10,13 @@
             <p>Are you sure you want to delete @Model.FirstName @Model.LastName from yout friend list?</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" id="delete-friend-accept" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-default" id="delete-friend-accept" data-userId="@Model.UserID" data-dismiss="modal">Yes</button>
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        friends.init();
+    });
+</script>
