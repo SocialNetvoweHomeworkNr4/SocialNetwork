@@ -34,15 +34,15 @@ namespace Website.Controllers
                             
                 var user = userService.GetById(id);
                 
-                profInfoModel.BirthDate = user.DateOfBirth.Value.ToShortDateString();
+                //profInfoModel.BirthDate = user.DateOfBirth.Value.ToShortDateString();
                 profInfoModel.Firstname = user.FirstName;
                 profInfoModel.Lastname = user.LastName;
                 profInfoModel.Phone = user.PhoneNumber;
                 profInfoModel.Interests = user.Interests;
                 profInfoModel.Information = user.About;
                 profInfoModel.ImagePath = user.Avatar;
-
             }
+
             return View(profInfoModel);
         }
 

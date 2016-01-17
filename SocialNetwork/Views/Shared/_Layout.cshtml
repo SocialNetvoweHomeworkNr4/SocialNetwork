@@ -26,6 +26,7 @@
                     <li>@Html.MenuItem("Home", "Index", "Home")</li>
                     <li>@Html.MenuItem("About", "About", "Home")</li>
                     <li>@Html.MenuItem("Contact", "Contact", "Home")</li>
+                    <li>@Html.MenuItem("Images", "Index", "Image")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
@@ -63,6 +64,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/handlebars")
+    @Scripts.Render("~/bundles/app")
+
+    <script>
+        app.init();
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

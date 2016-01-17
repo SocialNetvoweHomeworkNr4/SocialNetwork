@@ -12,6 +12,10 @@ namespace SocialNetwork.App_Start
     using Ninject.Web.Common;
     using BusinessLogic;
     using BusinessLogic.Services;
+    using System.Web.Mvc;
+    using Ninject.Modules;
+    using System.Reflection;
+    using System.Collections.Generic;
 
     public static class NinjectWebCommon 
     {
@@ -68,7 +72,10 @@ namespace SocialNetwork.App_Start
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IUserImageService>().To<UserImageService>();
             kernel.Bind<IFriendService>().To<FriendService>();
+            kernel.Bind<IUserImageCommentService>().To<UserImageCommentService>();
 
-        }        
+            DependencyResolver.SetResolver(new SocialNetwork.Helpers.DependencyResolver(kernel));
+
+        }
     }
 }

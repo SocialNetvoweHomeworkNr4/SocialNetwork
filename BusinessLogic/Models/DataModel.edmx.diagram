@@ -9,11 +9,11 @@
         <EntityTypeShape EntityType="LinkMeModel.UserImage" Width="1.5" PointX="9.75" PointY="0.75" />
         <AssociationConnector Association="LinkMeModel.FK_UserImage_User" />
         <EntityTypeShape EntityType="LinkMeModel.Friend" Width="1.5" PointX="2.75" PointY="2" />
-        <EntityTypeShape EntityType="LinkMeModel.Invintation" Width="1.5" PointX="2.75" PointY="4.5" />
-        <EntityTypeShape EntityType="LinkMeModel.UserImageComment" Width="1.5" PointX="10.125" PointY="4.875" />
+        <EntityTypeShape EntityType="LinkMeModel.UserImageComment" Width="1.5" PointX="12.125" PointY="3" />
         <AssociationConnector Association="LinkMeModel.FK_UserImageComment_User" />
         <AssociationConnector Association="LinkMeModel.FK_UserImageComment_UserImage" />
-      </Diagram>
+        <EntityTypeShape EntityType="LinkMeModel.Invintation" Width="1.5" PointX="0.75" PointY="4.75" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
