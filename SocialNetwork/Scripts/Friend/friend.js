@@ -54,10 +54,11 @@
 
     function removeFriend(userId) {
         var url = "/Friend/RemoveFriendAccept";
+        var page = $(".pagination").find(".active a").html();
         $.ajax({
             method: "POST",
             url: url,
-            data: { userId: userId },
+            data: { userId: userId, page: page },
             success: function (data) {
                 $("#result-container").html(data);
             }
