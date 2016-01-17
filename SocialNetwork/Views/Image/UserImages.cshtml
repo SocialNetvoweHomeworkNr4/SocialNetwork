@@ -1,0 +1,100 @@
+﻿@model SocialNetwork.ViewModels.Image.UserImagesViewModel
+@{
+    ViewBag.Title = "Frient Images";
+}
+
+<h2>@Model.FullName - Images</h2>
+
+@Html.ActionLink("User Profile", "ViewProfile", "Profile", new { id = Model.UserId }, null)
+
+<div class="row">
+    @{
+        int counter = 1;
+
+        foreach (var image in Model.Images)
+        {
+            <div class="col-sm-3">
+                <a href="" class="thumbnail image-edit" data-userId="@Model.UserId" data-image="@image.ImageID"><img class="user-image" src="/Images/@image.FileName" /></a>
+            </div>
+
+            if (counter % 4 == 0)
+            {
+                <div class="clearfix custom-class"></div>
+            }
+
+            counter++;
+        }
+
+    }
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jquery-file-upload/js")
+    @Scripts.Render("~/bundles/userImages")
+
+    <script>
+        $(function () {
+            userImages.init()
+        });
+    </script>
+}
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+
+<script id="comment-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10">
+            <blockquote>
+                <p>{{Text}}</p>
+                <footer>{{AuthorName}} - {{Date}}</footer>
+            </blockquote>
+        </div>
+    </div>
+</script>
+
+<script id="image-template" type="text/x-handlebars-template">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <span class="comment" data-toggle="tooltip" data-placement="bottom" title="Click here to edit">{{Comment}} </span>
+            <div class="comment-edit">
+                <input class="form-control pull-left" type="text" value="{{Comment}}" data-image="{{ImageId}}" />
+                <button class="btn btn-success comment-update" data-image="{{ImageId}}">Update</button>
+                <button class="btn btn-danger update-cancel">Cancel</button>
+            </div>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="center-block">
+                <img class="large-image center-block" src="/Images/{{ImageName}}" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" id="comment"></textarea>
+                    <button class="btn btn-success" id="add-comment" data-image="{{ImageId}}">Add</button>
+                </div>
+            </div>
+        </div>
+        <div id="comments">
+            {{#each Comments}}
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <blockquote>
+                        <p>{{Text}}</p>
+                        <footer>{{AuthorName}} - {{Date}}</footer>
+                    </blockquote>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</script>

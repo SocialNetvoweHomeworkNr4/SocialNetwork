@@ -53,7 +53,7 @@ namespace Website.Controllers
                   invitationsList.MyInvitations = Mapper.Map<List<User>, List<ProfileInvitationsViewModel>>(invitesToMe);
 
                 var user = userService.GetById(id);
-
+                
                 profInfoModel.BirthDate = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToShortDateString() : null;
                 profInfoModel.Firstname = user.FirstName;
                 profInfoModel.Lastname = user.LastName;

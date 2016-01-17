@@ -15,8 +15,8 @@ namespace SocialNetwork
 
             routes.MapRoute(
                 name: "Image",
-                url: "{controller}/{action}/{id}/{imageId}",
-                defaults: new { controller = "Image", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{imageId}",
+                defaults: new { controller = "Image", action = "Index", imageId = UrlParameter.Optional }
             );
 
             routes.MapRoute(
