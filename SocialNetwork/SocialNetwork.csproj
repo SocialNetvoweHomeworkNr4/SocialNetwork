@@ -249,7 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
+    <Folder Include="Images\Avatars\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

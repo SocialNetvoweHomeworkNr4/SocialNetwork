@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Profile";
 }
+@Styles.Render("~/bundles/jquery-file-upload/css")
 
 
 <div class="row">
@@ -17,3 +18,7 @@
 </div>
 
 
+@section scripts {
+    @Scripts.Render("~/bundles/jquery-file-upload/js")
+
+}

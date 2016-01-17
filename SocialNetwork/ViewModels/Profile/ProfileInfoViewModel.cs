@@ -31,7 +31,7 @@ namespace SocialNetwork.ViewModels.Profile
         public string Information { get; set; }
 
         [Display(Name = "Profile image")]
-        public string ImagePath { get; set; }
+        public string Avatar { get; set; }
         
     }
 }
