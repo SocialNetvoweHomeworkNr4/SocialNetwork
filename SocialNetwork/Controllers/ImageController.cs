@@ -24,6 +24,8 @@ namespace SocialNetwork.Controllers
         [HttpGet]
         public ActionResult Index(int id)
         {
+
+
             var images = userImageService.GetMany(s => s.UserID == id).ToList();
 
             var imagesView = Mapper.Map<List<UserImage>, List <UserImageViewModel>>(images);
