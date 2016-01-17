@@ -30,7 +30,6 @@ namespace Website.Controllers
 
             if (id != 0)
             {
-                            
                 var user = userService.GetById(id);
 
                 profInfoModel.BirthDate = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToShortDateString() : null;
@@ -40,8 +39,8 @@ namespace Website.Controllers
                 profInfoModel.Interests = user.Interests;
                 profInfoModel.Information = user.About;
                 profInfoModel.ImagePath = user.Avatar;
-
             }
+
             return View(profInfoModel);
         }
 

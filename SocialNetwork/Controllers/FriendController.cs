@@ -30,5 +30,12 @@ namespace SocialNetwork.Controllers
 
             return View(users.ToPagedList(pageNumber, pageSize));
         }
+
+        public ActionResult RemoveFriend(int userId)
+        {
+            User user = userService.GetById(userId);
+
+            return PartialView("~/Views/Friend/Modals/RemoveFriendModal.cshtml", user);
+        }
     }
 }
