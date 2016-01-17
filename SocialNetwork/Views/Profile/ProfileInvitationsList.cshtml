@@ -1,0 +1,68 @@
+﻿@model SocialNetwork.ViewModels.Profile.InvitationsListModel
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Firstname")
+        </th>
+        <th>
+            @Html.DisplayName("Lastname")
+        </th>
+        <th></th>
+    </tr>
+
+    @{
+        <h2>I invited this people: </h2>
+        <br />
+
+        foreach (var item in Model.InvitationsByMe)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.ActionLink("See profile","ViewProfile","Profile", new { id = item.UserId }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Firstname")
+        </th>
+        <th>
+            @Html.DisplayName("Lastname")
+        </th>
+        <th></th>
+    </tr>
+
+    @{
+        <h2>I am invited by this people: </h2>
+        <br />
+
+        foreach (var item in Model.MyInvitations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lastname)
+                </td>
+                <td>
+                    @Html.ActionLink("See profile ", "ViewProfile", "Profile", new { id = item.UserId }, null) |
+                   
+                    <a href="#" data-accept="true" data-id="@item.UserId" class="invite-action">Accept </a> | 
+                    <a href="#" data-accept="false" data-id="@item.UserId" class="invite-action">Decline </a>
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -70,11 +70,37 @@
             },
         })
     }
+
+    function inviteAction()
+    {
+        $(".invite-action").on('click', function (e) {
+
+            e.preventDefault();
+
+            var action = $(this).data('accept');
+            var id = $(this).data('id');
+
+
+            $.ajax({
+                method: 'POST',
+                url: '/Profile/AcceptDeclineInvite/',
+                dataType: JSON,
+                data: { id: id, act: action},
+
+                success: function () {
+                    alert('OK');
+                }
+
+            })
+
+        })
+    }
     
 
 
 
-$(document).ready(function () {
-    initEditable();
-    initFileUploader();
-});
+    $(document).ready(function () {
+        initEditable();
+        initFileUploader();
+        inviteAction();
+    });
