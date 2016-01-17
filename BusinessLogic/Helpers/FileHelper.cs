@@ -33,5 +33,28 @@ namespace BusinessLogic.Helpers
                 return false;
             }
         }
+
+        public static bool DeleteImage(string fullpath)
+        {
+
+            try
+            {
+                if(string.IsNullOrEmpty(fullpath) == false)
+                {
+                    File.Delete(fullpath);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
     }
 }

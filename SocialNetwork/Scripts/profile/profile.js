@@ -59,7 +59,7 @@
             url: '/Profile/UploadAvatar',
             dataType: 'json',
             done: function (e, data) {
-                alert('ok');
+                location.href = location;
             },
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);

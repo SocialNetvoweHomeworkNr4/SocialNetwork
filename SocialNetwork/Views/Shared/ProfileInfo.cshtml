@@ -55,29 +55,34 @@
                             @{
                                 if (Model.Avatar != null)
                                 {
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2 thumbnail">
                                         <img class="user-image" src="~/Images/Avatars/@Model.Avatar" />
                                     </div>
-                                }
-                                else
-                                {
-                                    <br>
-                                    <span class="btn btn-success fileinput-button">
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                        <span>Select file...</span>
-                                        <input id="profile-image" type="file" name="profile-image">
-                                    </span>
-                                        <br>
-                                        <br>
-                                        <div id="progress" class="progress" style="width: 250px;">
-                                            <div class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                        <div id="image" class="files"></div>
-                                        <br>
                                 }
                             }
 
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        
+                        <div class="col-sm-3">
+                            <hr />
+                            <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Select file...</span>
+                                <input id="profile-image" type="file" name="profile-image">
+                            </span>
+                            <br>
+                            <br>
+                            <div id="progress" class="progress" style="width: 250px;">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>
