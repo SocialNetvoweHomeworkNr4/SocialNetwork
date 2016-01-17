@@ -25,10 +25,9 @@ textarea {
 
 .user-image 
 {
-
-    max-height: 250px;
-    width: 100%;
-    margin: 15px;
+    max-height: 150px;
+    width: auto;
+    
 }
 
 .remove-friend, .add-friend
@@ -50,6 +49,29 @@ textarea {
 {
     max-width: 100%;
     margin: 15px;
+}
+
+.center-block 
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-comment-update 
+{
+    margin-left: 10px;
+}
+
+.comment-edit 
+{
+    display: none;
+}
+
+#comment 
+{
+    max-width: 60% !important;
+    margin-bottom: 15px;
 }
 
 .friend-search {

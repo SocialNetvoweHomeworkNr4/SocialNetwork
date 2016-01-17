@@ -29,8 +29,16 @@ namespace SocialNetwork
             bundles.Add(new ScriptBundle("~/bundles/jquery-file-upload/js").Include(
                 "~/Scripts/Plugins/jQueryFileUpload/js/vendor/jquery.ui.widget.js",
                 "~/Scripts/Plugins/jQueryFileUpload/js/jquery.iframe-transport.js",
-                "~/Scripts/Plugins/jQueryFileUpload/js/jquery.fileupload.js",
+                "~/Scripts/Plugins/jQueryFileUpload/js/jquery.fileupload.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/images").Include(
                 "~/Scripts/Image/images.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/userImages").Include(
+                "~/Scripts/Image/userImages.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/site/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/friends").Include(
                 "~/Scripts/Friend/friend.js"));
