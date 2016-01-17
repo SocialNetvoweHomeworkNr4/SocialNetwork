@@ -49,6 +49,19 @@ namespace SocialNetwork.Controllers
         {
             var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(userService.GetAll().OrderBy(u => u.FirstName).ToList());
 
+            //dont show yourself
+            allUsers = allUsers.Where(r => r.UserID != provider.GetUserId()).ToList();
+
+            //dont show friends
+            var friendsIds = friendService.GetFriendIDsByUserId(provider.GetUserId());
+
+            allUsers = allUsers.Where(r => friendsIds.Any(u => u != r.UserID)).ToList();
+
+            //dont show invited users
+            var invitationIds = invitationService.GetInvitationIDsByUserId(provider.GetUserId());
+
+            allUsers = allUsers.Where(r => invitationIds.Any(u => u != r.UserID)).ToList();
+
             pageNumber = (page ?? 1);
 
             return View(allUsers.ToPagedList(pageNumber, pageSize));

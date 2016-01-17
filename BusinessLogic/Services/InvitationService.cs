@@ -33,6 +33,13 @@ namespace BusinessLogic.Services
                 return ex.Message.ToString();
             }
         }
+        public int[] GetInvitationIDsByUserId(int userId)
+        {
+            List<int> IDs = dataContext.Invintations.Where(a => a.CurrentUserID == userId).Select(a => a.RequestedUserID).ToList<int>();
+            IDs.AddRange(dataContext.Friends.Where(a => a.FriendID == userId).Select(a => a.CurrentUserID).ToList<int>());
+
+            return IDs.ToArray<int>();
+        }
 
         public List<int> GetInvitesByMe(int id) // I invited others
         {
@@ -89,5 +96,6 @@ namespace BusinessLogic.Services
         List<int> GetInvitesByMe(int id);
         bool AcceptDeclineInvite(int userId, int requestedUserId, bool act);
         string InviteUser(int currentUserId, int userId);
+        int[] GetInvitationIDsByUserId(int userId);
     }
 }
