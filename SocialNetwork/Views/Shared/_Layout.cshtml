@@ -7,8 +7,8 @@
     <title>@ViewBag.Title - LinkMe</title>   
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -33,17 +33,17 @@
 
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        @Html.MenuItem("Ielogoties", "Login", "Auth", "<span class='glyphicon glyphicon-log-in'></span>")
-                        @Html.MenuItem("Reģistrēties", "Register", "Auth", "<span class='glyphicon glyphicon-tag'></span>")
+                        @Html.MenuItem("Login", "Login", "Auth", "<span class='glyphicon glyphicon-log-in'></span>")
+                        @Html.MenuItem("Register", "Register", "Auth", "<span class='glyphicon glyphicon-tag'></span>")
                     }
                     else
                     {
                         <li class="dropdown">
-                            <a href="#" id="profile-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sveiks, @User.Identity.Name.ToString() <span class="caret"></span></a>
+                            <a href="#" id="profile-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, @User.Identity.Name.ToString() <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("Index", "Profile")"><span class="glyphicon glyphicon-user"></span> Profils</a></li>
-                                <li><a href="@Url.Action("Index", "Friend")"><span class="glyphicon glyphicon-user"></span> Draugi</a></li>
-                                <li><a href="@Url.Action("Logout","Auth")"><span class='glyphicon glyphicon-log-out'></span> Izlogoties</a></li>
+                                <li><a href="@Url.Action("Index", "Profile")"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li><a href="@Url.Action("Index", "Friend")"><span class="glyphicon glyphicon-user"></span> Friends</a></li>
+                                <li><a href="@Url.Action("Logout","Auth")"><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>
                             </ul>
                         </li>
                     }
@@ -62,6 +62,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/handlebars")
+    @Styles.Render("~/Content/profile-styles")
+    @Scripts.Render("~/bundles/profile-scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

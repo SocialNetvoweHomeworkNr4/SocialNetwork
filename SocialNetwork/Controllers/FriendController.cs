@@ -61,5 +61,12 @@ namespace SocialNetwork.Controllers
 
             return PartialView("~/Views/Friend/_SearchResults.cshtml", allUsers.OrderBy(u => u.FirstName).ToPagedList(pageNumber, pageSize));
         }
+
+        public ActionResult RemoveFriend(int userId)
+        {
+            User user = userService.GetById(userId);
+
+            return PartialView("~/Views/Friend/Modals/RemoveFriendModal.cshtml", user);
+        }
     }
 }

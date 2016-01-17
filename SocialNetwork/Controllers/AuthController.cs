@@ -44,7 +44,7 @@ namespace SocialNetwork.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Nepareiza epasta adrese vai parole");
+                    ModelState.AddModelError("", "Wrong e-mail or password");
                     return View("Login", model);
                 }
             }
@@ -57,8 +57,8 @@ namespace SocialNetwork.Controllers
 
             var genders = new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = "Vīrietis", Value = "true"},
-                new SelectListItem { Selected = false, Text = "Sieviete", Value = "false"},
+                new SelectListItem { Selected = true, Text = "Male", Value = "true"},
+                new SelectListItem { Selected = false, Text = "Female", Value = "false"},
             },"Value","Text");
             ViewBag.Genders = genders;
 
@@ -85,8 +85,8 @@ namespace SocialNetwork.Controllers
 
             var genders = new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = "Vīrietis", Value = "true"},
-                new SelectListItem { Selected = false, Text = "Sieviete", Value = "false"},
+                new SelectListItem { Selected = true, Text = "Male", Value = "true"},
+                new SelectListItem { Selected = false, Text = "Female", Value = "false"},
             }, "Value", "Text");
             ViewBag.Genders = genders;
 

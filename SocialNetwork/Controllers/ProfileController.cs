@@ -23,7 +23,6 @@ namespace Website.Controllers
             this.userService = userService;
             provider = new CustomMembershipProvider();
         }
-        // GET: Profile
         public ActionResult Index()
         {
             var profInfoModel = new ProfileInfoViewModel();
@@ -31,18 +30,17 @@ namespace Website.Controllers
 
             if (id != 0)
             {
-                            
                 var user = userService.GetById(id);
-                
-                profInfoModel.BirthDate = user.DateOfBirth.Value.ToShortDateString();
+
+                profInfoModel.BirthDate = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToShortDateString() : null;
                 profInfoModel.Firstname = user.FirstName;
                 profInfoModel.Lastname = user.LastName;
                 profInfoModel.Phone = user.PhoneNumber;
                 profInfoModel.Interests = user.Interests;
                 profInfoModel.Information = user.About;
                 profInfoModel.ImagePath = user.Avatar;
-
             }
+
             return View(profInfoModel);
         }
 
