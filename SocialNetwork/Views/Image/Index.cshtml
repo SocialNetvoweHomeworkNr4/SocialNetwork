@@ -80,5 +80,17 @@
                 </div>
             </div>
         </div>
+        {{#each Comments}}
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+                <blockquote>
+                    <p>
+                        {{Text}}
+                        <footer>{{AuthorName}} - {{Date}}</footer>
+                </blockquote>
+            </div>
+        </div>
+        {{/each}}
+        
     </div>
 </script>

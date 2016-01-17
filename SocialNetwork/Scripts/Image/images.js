@@ -40,7 +40,8 @@
             
             var params = {
                 ImageName: data.model.FileName,
-                Comment: data.model.Comment
+                Comment: data.model.Comment,
+                Comments: data.model.Comments
             }
 
             $('#myModal').find('.modal-content').html(imageTemplate(params))
