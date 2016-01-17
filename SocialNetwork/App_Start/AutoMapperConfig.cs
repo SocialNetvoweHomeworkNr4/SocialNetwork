@@ -21,6 +21,8 @@ namespace SocialNetwork.App_Start
             Mapper.CreateMap<UserImageComment, ImageCommentViewModel>()
                 .ForMember(d => d.AuthorName, i => i.MapFrom(s => string.Format("{0} {1}", s.User.FirstName, s.User.LastName)))
                 .ForMember(d => d.Date, i => i.MapFrom(s => s.Date.ToString()));
+
+            Mapper.CreateMap<User, UserViewModel>();
         }
     }
 }

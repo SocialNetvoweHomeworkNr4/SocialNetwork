@@ -31,7 +31,6 @@ namespace Website.Controllers
 
             if (id != 0)
             {
-
                 var user = userService.GetById(id);
 
                 profInfoModel.BirthDate = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToShortDateString() : null;
@@ -42,7 +41,6 @@ namespace Website.Controllers
                 profInfoModel.Information = user.About;
                 profInfoModel.Avatar = user.Avatar;
 
-            }
             return View(profInfoModel);
         }
 
@@ -73,7 +71,7 @@ namespace Website.Controllers
                     {
                         field.SetValue(user, value, null);
                     }
-
+                    
                     userService.Update(user);
 
                     return Json(new { success = true, message = "Profile information updated successfully!" }, JsonRequestBehavior.AllowGet);
@@ -90,7 +88,7 @@ namespace Website.Controllers
                 return Json(new { success = false, message = "Field can't be empty" }, JsonRequestBehavior.AllowGet);
             }
 
-        }
+            }
 
         [HttpPost]
         public ActionResult UploadAvatar()
