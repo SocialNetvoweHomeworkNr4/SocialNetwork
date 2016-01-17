@@ -1,7 +1,38 @@
-﻿
+﻿@model PagedList.IPagedList<BusinessLogic.Models.User>
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Friends</h2>
 
+<div class="row">
+    @{
+        int counter = 1;
+
+        foreach (var user in Model)
+        {
+            <div class="col-sm-3">
+                <img class="user-image" src="~/Images/@user.Avatar" />
+                <span class="label label-success friend-status">draugs</span>
+                <div>
+                    @user.FirstName
+                </div>
+                
+            </div>
+
+            if (counter % 4 == 0)
+            {
+                <div class="clearfix custom-class"></div>
+            }
+
+            counter++;
+        }
+    }
+</div>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
