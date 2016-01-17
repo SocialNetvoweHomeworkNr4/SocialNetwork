@@ -23,10 +23,16 @@ namespace BusinessLogic.Services
 
             return dataContext.Users.Where(a => userIDs.Contains(a.UserID));
         }
+
+        public List<User> GetInvitedUsers(List<int> users)
+        {
+            return dataContext.Users.Where(s => users.Contains(s.UserID)).ToList();
+        }
     }
 
     public interface IUserService : IBaseService<User>
     {
         IQueryable<User> GetUsersByUserIDs(int userId);
+        List<User> GetInvitedUsers(List<int> users);
     }
 }

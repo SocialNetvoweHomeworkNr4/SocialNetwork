@@ -11,6 +11,7 @@ using System.Globalization;
 using BusinessLogic.Helpers;
 using AutoMapper;
 using SocialNetwork.ViewModels;
+using System.Collections.Generic;
 
 namespace Website.Controllers
 {
@@ -19,27 +20,38 @@ namespace Website.Controllers
     {
         private IUserService userService;
         private CustomMembershipProvider provider;
+        private IInvitationService invitationService;
 
 
-        public ProfileController(IUserService userService)
+        public ProfileController(IUserService userService, IInvitationService invitationService)
         {
             this.userService = userService;
+            this.invitationService = invitationService;
             provider = new CustomMembershipProvider();
         }
 
         [Authorize]
         public ActionResult Index()
         {
+            int id = provider.GetUserId();
+
             var profileModel = new ProfileViewModel();
 
             var profInfoModel = new ProfileInfoViewModel();
-
-
-
-            int id = provider.GetUserId();
+            var invitationsList = new InvitationsListModel();
+           
 
             if (id != 0)
             {
+                var myInvites = invitationService.GetMyInvites(id);
+                var invitationsByMe = invitationService.GetInvitesByMe(id);
+
+                var invitedByMe = userService.GetInvitedUsers(invitationsByMe);
+                var invitesToMe = userService.GetInvitedUsers(myInvites);
+
+                  invitationsList.InvitationsByMe = Mapper.Map<List<User>, List<ProfileInvitationsViewModel>>(invitedByMe);
+                  invitationsList.MyInvitations = Mapper.Map<List<User>, List<ProfileInvitationsViewModel>>(invitesToMe);
+
                 var user = userService.GetById(id);
 
                 profInfoModel.BirthDate = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToShortDateString() : null;
@@ -51,8 +63,8 @@ namespace Website.Controllers
                 profInfoModel.Avatar = user.Avatar;
 
                 profileModel.ProfileInfoViewModel = profInfoModel;
+                profileModel.InvitationsListModel = invitationsList;
 
-                //  return View(profInfoModel);
                 return View(profileModel);
             }
 
@@ -167,6 +179,16 @@ namespace Website.Controllers
             }
 
             return View("NotExistingUser");
+        }
+
+        public ActionResult AcceptDeclineInvite(int id, bool act)
+        {
+
+            int myId = provider.GetUserId();
+
+            invitationService.AcceptDeclineInvite(id, myId, act);
+
+            return Json(true);
         }
 
 

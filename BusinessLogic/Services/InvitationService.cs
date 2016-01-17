@@ -33,10 +33,61 @@ namespace BusinessLogic.Services
                 return ex.Message.ToString();
             }
         }
+
+        public List<int> GetInvitesByMe(int id) // I invited others
+        {
+            try
+            {
+                return GetMany(s => s.CurrentUserID == id && s.Accepted == false).Select(s => s.RequestedUserID).Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public List<int> GetMyInvites(int id) // I'am invited
+        {
+            try
+            {
+                return GetMany(s => s.RequestedUserID == id && s.Accepted == false).Select(s => s.CurrentUserID).Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public bool AcceptDeclineInvite(int userId, int requestedUserId, bool act )
+        {
+
+            if(userId > 0 && requestedUserId > 0)
+            {
+                var invitation = Get(s => s.CurrentUserID == userId && s.RequestedUserID == requestedUserId);
+                if(act == true)
+                {
+                    invitation.Accepted = true;
+                    this.Update(invitation);
+                }
+                else if(act == false)
+                {
+                    this.Delete(invitation);
+                }     
+                dataContext.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
     }
 
     public interface IInvitationService : IBaseService<Invintation>
     {
+        List<int> GetMyInvites(int id);
+        List<int> GetInvitesByMe(int id);
+        bool AcceptDeclineInvite(int userId, int requestedUserId, bool act);
         string InviteUser(int currentUserId, int userId);
     }
 }

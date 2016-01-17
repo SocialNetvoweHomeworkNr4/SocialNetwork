@@ -10,7 +10,7 @@ namespace SocialNetwork.ViewModels
     public class ProfileViewModel
     {
         public ProfileInfoViewModel ProfileInfoViewModel { get; set; }
-      //  public InvitationsViewModel InvitationsViewModel { get; set; }
+        public InvitationsListModel InvitationsListModel { get; set; }
 
 
     }

@@ -13,7 +13,7 @@
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="profile-information">@Html.Partial("ProfileInfo",Model.ProfileInfoViewModel)</div>
-            <div role="tabpanel" class="tab-pane" id="invitations-list">Invitations@*@Html.Partial("InvitationPartial")*@</div>
+            <div role="tabpanel" class="tab-pane" id="invitations-list">@Html.Partial("ProfileInvitationsList", Model.InvitationsListModel)</div>
         </div>
     </div>
 

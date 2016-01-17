@@ -30,6 +30,8 @@ namespace SocialNetwork.App_Start
                 .ForMember(d => d.Information, i => i.MapFrom(s => s.Interests))
                 .ForMember(d => d.Phone, i => i.MapFrom(s => s.PhoneNumber));
 
+            Mapper.CreateMap<User, ProfileInvitationsViewModel>();
+
         }
     }
 }
