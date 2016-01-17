@@ -23,10 +23,9 @@ namespace SocialNetwork.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Index(int id)
         {
-
-
             var images = userImageService.GetMany(s => s.UserID == id).ToList();
 
             var imagesView = Mapper.Map<List<UserImage>, List <UserImageViewModel>>(images);
@@ -39,6 +38,7 @@ namespace SocialNetwork.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult UploadFiles(int userId)
         {
             try
@@ -76,6 +76,7 @@ namespace SocialNetwork.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, int imageId)
         {
             var image = userImageService.Get(s => s.UserID == id && s.ImageID == imageId);

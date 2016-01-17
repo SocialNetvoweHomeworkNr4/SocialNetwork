@@ -24,6 +24,8 @@ namespace Website.Controllers
             this.userService = userService;
             provider = new CustomMembershipProvider();
         }
+
+        [Authorize]
         public ActionResult Index()
         {
             var profInfoModel = new ProfileInfoViewModel();
@@ -48,6 +50,7 @@ namespace Website.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult editProfile(string name, string value)
         {
             if (string.IsNullOrEmpty(name) == false && string.IsNullOrEmpty(value) == false)
@@ -94,12 +97,11 @@ namespace Website.Controllers
             }
 
         [HttpPost]
+        [Authorize]
         public ActionResult UploadAvatar()
         {
-
             var userId = provider.GetUserId();
             var user = userService.GetById(userId);
-
            
             try
             {
