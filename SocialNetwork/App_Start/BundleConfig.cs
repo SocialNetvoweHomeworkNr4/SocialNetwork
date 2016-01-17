@@ -30,7 +30,7 @@ namespace SocialNetwork
                 "~/Scripts/Plugins/jQueryFileUpload/js/vendor/jquery.ui.widget.js",
                 "~/Scripts/Plugins/jQueryFileUpload/js/jquery.iframe-transport.js",
                 "~/Scripts/Plugins/jQueryFileUpload/js/jquery.fileupload.js",
-                "~/Scripts/images.js"));
+                "~/Scripts/Image/images.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/friends").Include(
                 "~/Scripts/Friend/friend.js"));
