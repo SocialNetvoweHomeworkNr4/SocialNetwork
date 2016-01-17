@@ -100,6 +100,7 @@ namespace Website.Controllers
             var userId = provider.GetUserId();
             var user = userService.GetById(userId);
 
+           
             try
             {
                 var userImage = Request.Files[0];
@@ -107,6 +108,12 @@ namespace Website.Controllers
                 string fileName = string.Format("{0}{1}.{2}", "avatar-",Guid.NewGuid().ToString(), userImage.ContentType.Split('/')[1]);
 
                 string fullPath = HttpContext.Server.MapPath(string.Format("{0}{1}","~/Images/Avatars/", fileName));
+
+                if (string.IsNullOrEmpty(user.Avatar) == false)
+                {
+                    string existingImagePath = HttpContext.Server.MapPath(string.Format("{0}{1}", "~/Images/Avatars/", user.Avatar));
+                    FileHelper.DeleteImage(existingImagePath);
+                }
 
                 FileHelper.SaveStreamToFile(fullPath, userImage.InputStream);
 
