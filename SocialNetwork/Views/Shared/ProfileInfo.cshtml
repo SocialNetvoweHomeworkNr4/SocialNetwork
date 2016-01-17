@@ -1,7 +1,7 @@
 ﻿@model SocialNetwork.ViewModels.Profile.ProfileInfoViewModel
 
-@Styles.Render("~/Content/profile-styles")
-@Scripts.Render("~/bundles/profile-scripts")
+
+
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -17,7 +17,7 @@
                         <td>@Html.DisplayNameFor(model => model.Interests)</td>
                         <td>@Html.DisplayNameFor(model => model.Information)</td>
                         <td>@Html.DisplayNameFor(model => model.BirthDate)</td>
-                        <td>@Html.DisplayName("Profila attēls")</td>
+                        <td>@Html.DisplayName("Profile image")</td>
                     </tr>
                 </thead>
                 <tbody style="text-align:center;">
@@ -30,7 +30,7 @@
                         <td><a href="#" id="About">@Html.DisplayFor(model => model.Information)</a></td>
                         <td><a href="#" id="DateOfBirth">@Html.DisplayFor(model => model.BirthDate)</a></td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#image-modal">Nomainīt</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#image-modal">Change</button>
                         </td>
                     </tr>
                 </tbody>
@@ -40,10 +40,57 @@
     </div>
 </div>
 
-<div class="modal modal-sm" tabindex="-1" role="dialog" aria-labelledby="image-modal" id="image-modal">
+<div class="modal fade bs-example-modal-sm" tabindex="-1" id="image-modal" role="dialog" aria-labelledby="imageModal">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            IMAGE
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Profile Image</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="container">
+                            @{
+                                if (Model.Avatar != null)
+                                {
+                                    <div class="col-sm-2 thumbnail">
+                                        <img class="user-image" src="~/Images/Avatars/@Model.Avatar" />
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        
+                        <div class="col-sm-3">
+                            <hr />
+                            <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Select file...</span>
+                                <input id="profile-image" type="file" name="profile-image">
+                            </span>
+                            <br>
+                            <br>
+                            <div id="progress" class="progress" style="width: 250px;">
+                                <div class="progress-bar progress-bar-success"></div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
         </div>
     </div>
 </div>

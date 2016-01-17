@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 using SocialNetwork.ViewModels.Profile;
 using System;
 using System.Globalization;
+using BusinessLogic.Helpers;
+using AutoMapper;
+using SocialNetwork.ViewModels;
 
 namespace Website.Controllers
 {
@@ -23,48 +26,59 @@ namespace Website.Controllers
             this.userService = userService;
             provider = new CustomMembershipProvider();
         }
-        // GET: Profile
+
+        [Authorize]
         public ActionResult Index()
         {
+            var profileModel = new ProfileViewModel();
+
             var profInfoModel = new ProfileInfoViewModel();
+
+
+
             int id = provider.GetUserId();
 
             if (id != 0)
             {
-                            
                 var user = userService.GetById(id);
                 
-                //profInfoModel.BirthDate = user.DateOfBirth.Value.ToShortDateString();
+                profInfoModel.BirthDate = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToShortDateString() : null;
                 profInfoModel.Firstname = user.FirstName;
                 profInfoModel.Lastname = user.LastName;
                 profInfoModel.Phone = user.PhoneNumber;
                 profInfoModel.Interests = user.Interests;
                 profInfoModel.Information = user.About;
-                profInfoModel.ImagePath = user.Avatar;
+                profInfoModel.Avatar = user.Avatar;
+
+                profileModel.ProfileInfoViewModel = profInfoModel;
+
+                //  return View(profInfoModel);
+                return View(profileModel);
             }
 
-            return View(profInfoModel);
+            return View();
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult editProfile(string name, string value)
         {
-            if(string.IsNullOrEmpty(name) == false && string.IsNullOrEmpty(value) == false)
+            if (string.IsNullOrEmpty(name) == false && string.IsNullOrEmpty(value) == false)
             {
                 int userId = provider.GetUserId();
 
-                if(userId > 0)
+                if (userId > 0)
                 {
 
                     var user = userService.GetById(userId);
-                    var field =  user.GetType().GetProperty(name);
+                    var field = user.GetType().GetProperty(name);
 
                     if (((name == "Age") || (name == "PhoneNumber")) && Regex.IsMatch(value, @"^\d+$"))
                     {
                         int val = int.Parse(value);
                         field.SetValue(user, val, null);
                     }
-                    else if(name == "DateOfBirth")
+                    else if (name == "DateOfBirth")
                     {
                         var tmp = DateTime.Parse(value);
                         field.SetValue(user, tmp, null);
@@ -76,20 +90,85 @@ namespace Website.Controllers
                     
                     userService.Update(user);
 
-                    return Json( new {success = true, message = "Profila infomācija atjaunota veiksmīgi!" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = true, message = "Profile information updated successfully!" }, JsonRequestBehavior.AllowGet);
 
                 }
                 else
                 {
-                    return Json(new { success = false, message = "Lietotājs nav atrasts" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, message = "User not found!" }, JsonRequestBehavior.AllowGet);
                 }
 
             }
             else
             {
-                return Json(new { success = false, message = "Lauks nevar būt tukšs" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, message = "Field can't be empty" }, JsonRequestBehavior.AllowGet);
             }
 
+            }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult UploadAvatar()
+        {
+            var userId = provider.GetUserId();
+            var user = userService.GetById(userId);
+           
+            try
+            {
+                var userImage = Request.Files[0];
+
+                string fileName = string.Format("{0}{1}.{2}", "avatar-",Guid.NewGuid().ToString(), userImage.ContentType.Split('/')[1]);
+
+                string fullPath = HttpContext.Server.MapPath(string.Format("{0}{1}","~/Images/Avatars/", fileName));
+
+                if (string.IsNullOrEmpty(user.Avatar) == false)
+                {
+                    string existingImagePath = HttpContext.Server.MapPath(string.Format("{0}{1}", "~/Images/Avatars/", user.Avatar));
+                    FileHelper.DeleteImage(existingImagePath);
+                }
+
+                FileHelper.SaveStreamToFile(fullPath, userImage.InputStream);
+
+                user.Avatar = fileName;
+                userService.Update(user);
+
+                return Json(true);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
         }
+
+        public ActionResult ViewProfile(int id)
+        {
+
+            if (id <= 0)
+            {
+                return View("NotExistingUser");
+            }
+
+            try
+            {
+                var user = userService.GetById(id);
+
+                if(user != null)
+                {
+                  var model =  Mapper.Map<User, ProfileInfoViewModel>(user);
+
+                  return View(model);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                return View("NotExistingUser");
+            }
+
+            return View("NotExistingUser");
+        }
+
+
     }
 }

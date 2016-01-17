@@ -154,7 +154,7 @@
             <End Role="UserImageComment" EntitySet="UserImageComments" />
           </AssociationSet>
           <EntitySet Name="Invintations" EntityType="LinkMeModel.Invintation" />
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="UserImage">
           <Key>
             <PropertyRef Name="ImageID" />
@@ -187,6 +187,15 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CurrentUserID" Type="Int32" Nullable="false" />
           <Property Name="FriendID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invintation">
+          <Key>
+            <PropertyRef Name="InvintationID" />
+          </Key>
+          <Property Name="InvintationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentUserID" Type="Int32" Nullable="false" />
+          <Property Name="RequestedUserID" Type="Int32" Nullable="false" />
+          <Property Name="Accepted" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="UserImageComment">
           <Key>
@@ -233,7 +242,7 @@
           <Property Name="RequestedUserID" Type="Int32" Nullable="false" />
           <Property Name="Accepted" Type="Boolean" Nullable="false" />
         </EntityType>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

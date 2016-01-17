@@ -72,10 +72,11 @@ namespace SocialNetwork.App_Start
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<IUserImageService>().To<UserImageService>();
             kernel.Bind<IFriendService>().To<FriendService>();
+            kernel.Bind<IInvitationService>().To<InvitationService>();
             kernel.Bind<IUserImageCommentService>().To<UserImageCommentService>();
 
             DependencyResolver.SetResolver(new SocialNetwork.Helpers.DependencyResolver(kernel));
 
-        }
+        }        
     }
 }

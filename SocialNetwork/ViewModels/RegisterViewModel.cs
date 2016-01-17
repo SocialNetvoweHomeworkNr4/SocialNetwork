@@ -9,30 +9,30 @@ namespace SocialNetwork.ViewModels
     public class RegisterViewModel
     {
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet savu vārdu")]
-        [Display(Name = "Vārds")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your name")]
+        [Display(Name = "Name")]
         public string Firstname { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet savu uzvārdu")]
-        [Display(Name = "Uzvārds")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your surname")]
+        [Display(Name = "Surname")]
         public string Lastname { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet e-pasta adresi")]
-        [Display(Name ="E-pasts")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your e-mail")]
+        [Display(Name ="E-mail")]
         public string Email { get; set; }
 
-        [Display(Name = "Dzimums")]
+        [Display(Name = "Gender")]
         public bool Gender { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Lūdzu ievadiet paroli")]
-        [Display(Name = "Parole")]
-        [MinLength(length:5,ErrorMessage = "Parolei jābūt vismaz 5 simbolu garai")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your password")]
+        [Display(Name = "Password")]
+        [MinLength(length:5,ErrorMessage = "Password must contain at least 5 characters")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(AllowEmptyStrings = false,ErrorMessage = "Lūdzu atkārtojiet paroli")]
-        [Display(Name = "Atkārtojiet paroli")]
-        [Compare("Password", ErrorMessage = "Parolēm ir jāsakrīt")]
+        [Required(AllowEmptyStrings = false,ErrorMessage = "Please repeat your password")]
+        [Display(Name = "Repeat password")]
+        [Compare("Password", ErrorMessage = "Password must match")]
         [DataType(DataType.Password)]
         public string RepeatPassword { get; set; }
 

@@ -35,6 +35,9 @@ namespace SocialNetwork
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/site/app.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/friends").Include(
+                "~/Scripts/Friend/friend.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

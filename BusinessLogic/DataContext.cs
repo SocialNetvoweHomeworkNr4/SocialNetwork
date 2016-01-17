@@ -18,6 +18,8 @@ namespace BusinessLogic
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         DbSet<User> Users { get; set; }
+        DbSet<Friend> Friends { get; set; }
+        DbSet<Invintation> Invintations { get; set; }
         int SaveChanges();
     }
 }

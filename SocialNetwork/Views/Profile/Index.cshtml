@@ -1,22 +1,28 @@
-﻿@model SocialNetwork.ViewModels.Profile.ProfileInfoViewModel
+﻿@model SocialNetwork.ViewModels.ProfileViewModel
 @{
-    ViewBag.Title = "Profils";
+    ViewBag.Title = "Profile";
 }
+@Styles.Render("~/bundles/jquery-file-upload/css")
 
-<div class="row">
+
+<div class="row" style="margin-top: 20px;">
     <div class="col-md-12">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#profile-information" aria-controls="profile-information" role="tab" data-toggle="tab">Profila informācija</a></li>
-            <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Pasākumi</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Iestatījumi</a></li>
+            <li role="presentation" class="active"><a href="#profile-information" aria-controls="profile-information" role="tab" data-toggle="tab">Profile information</a></li>
+            <li role="presentation" class=""><a href="#invitations-list" aria-controls="invitations-list" role="tab" data-toggle="tab">Invitations list</a></li>
         </ul>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="profile-information">@Html.Partial("ProfileInfo")</div>
-            <div role="tabpanel" class="tab-pane" id="events">Pasākumi</div>
-            <div role="tabpanel" class="tab-pane" id="settings">Iestatījumi</div>
+            <div role="tabpanel" class="tab-pane active" id="profile-information">@Html.Partial("ProfileInfo",Model.ProfileInfoViewModel)</div>
+            <div role="tabpanel" class="tab-pane" id="invitations-list">Invitations@*@Html.Partial("InvitationPartial")*@</div>
         </div>
     </div>
 
 </div>
 
 
+@section scripts {
+@Scripts.Render("~/bundles/jquery-file-upload/js")
+@Styles.Render("~/Content/profile-styles")
+@Scripts.Render("~/bundles/profile-scripts")
+
+}

@@ -8,16 +8,16 @@ namespace SocialNetwork.ViewModels
 {
     public class LoginViewModel
     {
-        [Display(Name ="E-pasts")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Ievadiet e-pasta adresi")]
+        [Display(Name ="E-mail")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your e-mail")]
         public string Email { get; set; }
 
         [Display(Name = "Parole")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Ievadiet paroli")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter your password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Atcerēties mani")]
+        [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
 
     }

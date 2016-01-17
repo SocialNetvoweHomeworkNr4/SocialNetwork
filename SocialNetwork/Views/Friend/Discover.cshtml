@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Discover People";
+}
+
+<h2 class="text-center">Discover new people!</h2>
+
+@Html.Partial("_SearchPerson")
+
+<div id="result-container">
+    @Html.Partial("_SearchResults")
+</div>
+
+<div id="add-friend-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Invitation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <h2 class="text-center">Invitation Sent!</h2>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default text-center" id="add-friend-finish" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/friends")
+
+    <script>
+        $(function () {
+            friends.init();
+        });
+    </script>
+}
