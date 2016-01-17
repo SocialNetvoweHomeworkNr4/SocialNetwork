@@ -9,9 +9,13 @@ namespace BusinessLogic.Services
 {
     public class InvitationService : BaseService<Invintation>, IInvitationService
     {
-        public InvitationService(IDataContext dataContext)
+        IFriendService friendService;
+
+        public InvitationService(IDataContext dataContext, IUserService userService, IFriendService friendService)
             : base(dataContext)
-        { }
+        {
+            this.friendService = friendService;
+        }
 
         public string InviteUser(int currentUserId, int userId)
         {
@@ -77,6 +81,12 @@ namespace BusinessLogic.Services
                 {
                     invitation.Accepted = true;
                     this.Update(invitation);
+
+                    Friend friend = new Friend() { CurrentUserID = userId, FriendID = requestedUserId, ID = 0 };
+                    friendService.Add(friend);
+
+                    dataContext.SaveChanges();
+
                 }
                 else if(act == false)
                 {
