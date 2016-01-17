@@ -3,6 +3,7 @@ using BusinessLogic.Models;
 using SocialNetwork.Helpers.ValueResolvers;
 using SocialNetwork.ViewModels;
 using SocialNetwork.ViewModels.Image;
+using SocialNetwork.ViewModels.Profile;
 using System.Linq;
 
 namespace SocialNetwork.App_Start
@@ -23,6 +24,12 @@ namespace SocialNetwork.App_Start
                 .ForMember(d => d.Date, i => i.MapFrom(s => s.Date.ToString()));
 
             Mapper.CreateMap<User, UserViewModel>();
+
+            Mapper.CreateMap<User, ProfileInfoViewModel>()
+                .ForMember(d => d.BirthDate, i => i.MapFrom(s => s.DateOfBirth))
+                .ForMember(d => d.Information, i => i.MapFrom(s => s.Interests))
+                .ForMember(d => d.Phone, i => i.MapFrom(s => s.PhoneNumber));
+
         }
     }
 }

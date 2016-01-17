@@ -254,6 +254,8 @@
     <Content Include="Views\Friend\_SearchResults.cshtml" />
     <Content Include="Views\Friend\Modals\RemoveFriendModal.cshtml" />
     <Content Include="Views\Friend\Modals\AddFriendModal.cshtml" />
+    <Content Include="Views\Shared\NotExistingUser.cshtml" />
+    <Content Include="Views\Profile\ViewProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

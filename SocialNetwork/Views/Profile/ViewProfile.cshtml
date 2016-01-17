@@ -1,0 +1,61 @@
+﻿@model SocialNetwork.ViewModels.Profile.ProfileInfoViewModel
+
+@{
+    ViewBag.Title = Model.Firstname + " " + Model.Lastname + " - Profile Details";
+}
+
+<h2> @Model.Firstname  @Model.Lastname</h2>
+
+
+<div class="row">
+    <div class="col-md-3 thumbnail">
+        <img class="user-image" src="~/Images/Avatars/@Model.Avatar" />
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="table-responsive">
+            <table class="table profile-info-tab-table">
+                <thead style="font-weight:bold; text-align:center;">
+                    <tr>
+                        <td>#</td>
+                        <td>@Html.DisplayNameFor(model => model.Firstname)</td>
+                        <td>@Html.DisplayNameFor(model => model.Lastname)</td>
+                        <td>@Html.DisplayNameFor(model => model.Phone)</td>
+                        <td>@Html.DisplayNameFor(model => model.Interests)</td>
+                        <td>@Html.DisplayNameFor(model => model.Information)</td>
+                        <td>@Html.DisplayNameFor(model => model.BirthDate)</td>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center;">
+                    <tr class="active">
+                        <td>#</td>
+                        <td>@Html.DisplayFor(model => model.Firstname)</td>
+                        <td>@Html.DisplayFor(model => model.Lastname)</td>
+                        <td>@Html.DisplayFor(model => model.Phone)</td>
+                        <td>@Html.DisplayFor(model => model.Interests)</td>
+                        <td>@Html.DisplayFor(model => model.Information)</td>
+                        <td>@Html.DisplayFor(model => model.BirthDate)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="col-md-9">
+           <div class="row">
+               <div class="col-md-6 text-center">
+                   <a href="#" title="Send message"><span style="font-size:4em;" class="glyphicon glyphicon-envelope"></span> </a><br />
+               </div>
+               <div class="col-md-6 text-center">
+                   <a href="#" title="Send invitation"><span style="font-size:3.5em;" class="glyphicon glyphicon-plus"></span> </a>
+               </div>
+           </div>
+        </div>
+    </div>
+
+</div>
+
+
+<p>
+    @Html.ActionLink("Back", "Index", "Home")
+</p>

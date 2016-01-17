@@ -91,5 +91,18 @@ namespace SocialNetwork.Controllers
 
             return Json(new { result = result }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult RemoveFriendAccept(int userId)
+        {
+            int currentUserId = provider.GetUserId();
+
+            friendService.DeleteFriend(currentUserId, userId);
+
+            IQueryable<User> users = userService.GetUsersByUserIDs(currentUserId);
+
+            var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(users.ToList());
+
+            return PartialView("~/Views/Friend/_SearchResults.cshtml", allUsers);
+        }
     }
 }
