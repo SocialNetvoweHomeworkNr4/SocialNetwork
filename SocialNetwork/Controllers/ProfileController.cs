@@ -9,6 +9,7 @@ using SocialNetwork.ViewModels.Profile;
 using System;
 using System.Globalization;
 using BusinessLogic.Helpers;
+using AutoMapper;
 
 namespace Website.Controllers
 {
@@ -127,6 +128,39 @@ namespace Website.Controllers
             {
                 return Json(false);
             }
+        }
+
+        public ActionResult ViewProfile(int id)
+        {
+
+            if (id <= 0)
+            {
+                return View("NotExistingUser");
+            }
+
+            try
+            {
+                var user = userService.GetById(id);
+
+                if(user != null)
+                {
+                  var model =  Mapper.Map<User, ProfileInfoViewModel>(user);
+
+                  return View(model);
+                }
+
+            }
+            catch(Exception ex)
+            {
+                return View("NotExistingUser");
+            }
+
+           
+
+
+
+
+            return View("NotExistingUser");
         }
     }
 }
