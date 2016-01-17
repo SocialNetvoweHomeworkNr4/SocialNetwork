@@ -161,6 +161,7 @@
     <Compile Include="ViewModels\Profile\ProfileInfoViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Image\UserImageViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-editable.css" />
@@ -246,6 +247,9 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\ProfileInfo.cshtml" />
     <Content Include="Views\Friend\Index.cshtml" />
+    <Content Include="Views\Friend\Discover.cshtml" />
+    <Content Include="Views\Friend\_SearchPerson.cshtml" />
+    <Content Include="Views\Friend\_SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
