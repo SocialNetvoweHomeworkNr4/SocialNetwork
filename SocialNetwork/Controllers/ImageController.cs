@@ -85,9 +85,7 @@ namespace SocialNetwork.Controllers
         [HttpPost]
         public ActionResult Edit(int imageId)
         {
-            var userId = HttpContextHelper.CurrentUser.UserID;
-
-            var image = userImageService.Get(s => s.UserID == userId && s.ImageID == imageId);
+            var image = userImageService.Get(s => s.ImageID == imageId);
 
             var model = new UserImageViewModel();
 
@@ -144,6 +142,21 @@ namespace SocialNetwork.Controllers
             {
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [HttpGet]
+        public ActionResult UserImages(int id)
+        {
+            var images = userImageService.GetMany(s => s.UserID == id).ToList();
+
+            var imagesView = Mapper.Map<List<UserImage>, List<UserImageViewModel>>(images);
+
+            var model = new UserImagesViewModel();
+            model.UserId = id;
+            model.Images = imagesView;
+            model.FullName = UserHelper.FullName(userService.GetById(id));
+
+            return View(model);
         }
     }
 }

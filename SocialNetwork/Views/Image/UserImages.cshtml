@@ -1,37 +1,16 @@
 ﻿@model SocialNetwork.ViewModels.Image.UserImagesViewModel
-
 @{
-    ViewBag.Title = "User Image Gallery";
+    ViewBag.Title = "Frient Images";
 }
 
-@Styles.Render("~/bundles/jquery-file-upload/css")
+<h2>@Model.FullName - Images</h2>
 
-<h2>User Image Gallery</h2>
-
-<div class="row">
-    <div class="col-sm-6">
-        <div class="container">
-            <br>
-            <span class="btn btn-success fileinput-button">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Select file...</span>
-                <input id="fileupload" type="file" name="files[]" multiple>
-            </span>
-            <br>
-            <br>
-            <div id="progress" class="progress">
-                <div class="progress-bar progress-bar-success"></div>
-            </div>
-            <div id="files" class="files"></div>
-            <br>
-        </div>
-    </div>
-</div>
+@Html.ActionLink("User Profile", "ViewProfile", "Profile", new { id = Model.UserId }, null)
 
 <div class="row">
     @{
         int counter = 1;
-    
+
         foreach (var image in Model.Images)
         {
             <div class="col-sm-3">
@@ -41,21 +20,21 @@
             if (counter % 4 == 0)
             {
                 <div class="clearfix custom-class"></div>
-            } 
+            }
 
             counter++;
         }
-    
+
     }
 </div>
 
 @section scripts {
     @Scripts.Render("~/bundles/jquery-file-upload/js")
-    @Scripts.Render("~/bundles/images")
+    @Scripts.Render("~/bundles/userImages")
 
     <script>
         $(function () {
-            images.init({ userId: @Model.UserId })
+            userImages.init()
         });
     </script>
 }

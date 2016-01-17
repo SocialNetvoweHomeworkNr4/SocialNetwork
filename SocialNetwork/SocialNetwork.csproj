@@ -197,6 +197,7 @@
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\Friend\friend.js" />
     <Content Include="Scripts\Image\images.js" />
+    <Content Include="Scripts\Image\userImages.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
@@ -262,6 +263,7 @@
     <Content Include="Views\Friend\Modals\RemoveFriendModal.cshtml" />
     <Content Include="Views\Shared\NotExistingUser.cshtml" />
     <Content Include="Views\Profile\ViewProfile.cshtml" />
+    <Content Include="Views\Image\UserImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

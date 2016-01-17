@@ -27,7 +27,7 @@
                 }
 
                 <div class="text-center user-name">
-                    <h4>@user.FirstName @user.LastName</h4>
+                    <h4>@Html.ActionLink(user.FirstName + " " + user.LastName, "ViewProfile", "Profile", new { id = user.UserID }, null)</h4>
                 </div>
 
             </div>
