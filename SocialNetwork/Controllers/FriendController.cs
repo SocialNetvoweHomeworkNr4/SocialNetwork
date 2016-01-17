@@ -27,11 +27,11 @@ namespace SocialNetwork.Controllers
         // GET: Friend
         public ActionResult Index(int? page)
         {
-            List<User> users = userService.GetAll().ToList();
+            var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(userService.GetAll().ToList());
 
             pageNumber = (page ?? 1);
 
-            return View(users.ToPagedList(pageNumber, pageSize));
+            return View(allUsers.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Discover(int? page)
