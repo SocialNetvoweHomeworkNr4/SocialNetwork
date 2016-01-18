@@ -121,7 +121,7 @@ namespace SocialNetwork.Controllers
             var allUsers = Mapper.Map<IList<User>, IList<UserViewModel>>(users.ToList());
             pageNumber = (page ?? 1);
 
-            return PartialView("~/Views/Friend/_SearchResults.cshtml", allUsers.ToPagedList(pageNumber, pageSize));
+            return PartialView("~/Views/Friend/_SearchResultsFriends.cshtml", allUsers.ToPagedList(pageNumber, pageSize));
         }
     }
 }
