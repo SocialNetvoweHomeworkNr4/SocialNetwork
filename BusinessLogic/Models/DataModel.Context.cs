@@ -13,36 +13,31 @@
 namespace BusinessLogic.Models
 {
 
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    
 
-
-public partial class LinkMeEntities : DbContext
-{
-    public LinkMeEntities()
-        : base("name=LinkMeEntities")
+    public partial class LinkMeEntities : DbContext
     {
+        public LinkMeEntities()
+            : base("name=LinkMeEntities")
+        {
 
+        }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserImage> UserImages { get; set; }
+        public virtual DbSet<Friend> Friends { get; set; }
+        public virtual DbSet<UserImageComment> UserImageComments { get; set; }
+        public virtual DbSet<Invintation> Invintations { get; set; }
     }
-
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        throw new UnintentionalCodeFirstException();
-    }
-
-
-    public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserImage> UserImages { get; set; }
-
-    public virtual DbSet<Friend> Friends { get; set; }
-
-    public virtual DbSet<Invintation> Invintations { get; set; }
-
-    public virtual DbSet<UserImageComment> UserImageComments { get; set; }
-
-}
 
 }
 

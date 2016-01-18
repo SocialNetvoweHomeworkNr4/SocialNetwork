@@ -8,6 +8,7 @@ namespace SocialNetwork.ViewModels.Image
     public class UserImagesViewModel
     {
         public int UserId { get; set; }
+        public string FullName { get; set; }
         public List<UserImageViewModel> Images { get; set; }
     }
 }

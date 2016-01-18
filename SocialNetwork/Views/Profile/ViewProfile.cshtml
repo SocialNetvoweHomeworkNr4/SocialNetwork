@@ -43,11 +43,14 @@
         <hr />
         <div class="col-md-9">
            <div class="row">
-               <div class="col-md-6 text-center">
+               <div class="col-md-4 text-center">
                    <a href="#" title="Send message"><span style="font-size:4em;" class="glyphicon glyphicon-envelope"></span> </a><br />
                </div>
-               <div class="col-md-6 text-center send-invite">
-                   <a href="#" data-id="@Model.UserId" title="Send invitation" class="send-invite"><span style="font-size:3.5em;" class="glyphicon glyphicon-plus"></span> </a>
+               <div class="col-md-4 text-center">
+                   <a href="#" title="Send invitation"><span style="font-size:3.5em;" class="glyphicon glyphicon-plus"></span> </a>
+               </div>
+               <div class="col-md-4 text-center">
+                   <a href="@Url.Action("UserImages", "Image", new { id = Model.UserId })"><span style="font-size:3.5em;" class="glyphicon glyphicon-eye-open"></span></a>
                </div>
            </div>
         </div>

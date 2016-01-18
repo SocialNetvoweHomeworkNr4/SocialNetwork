@@ -55,12 +55,14 @@ namespace SocialNetwork.Controllers
             //dont show friends
             var friendsIds = friendService.GetFriendIDsByUserId(provider.GetUserId());
 
-            allUsers = allUsers.Where(r => friendsIds.Any(u => u != r.UserID)).ToList();
+            allUsers = allUsers.Where(r => friendsIds.Any(u => u != r.UserID) == false).ToList();
 
             //dont show invited users
-            var invitationIds = invitationService.GetInvitationIDsByUserId(provider.GetUserId());
+            var t = invitationService.GetInvitationIDsByUserId(provider.GetUserId());
 
-            allUsers = allUsers.Where(r => invitationIds.Any(u => u != r.UserID)).ToList();
+            ViewBag.invitationIds = t.ToList();
+
+           // allUsers = allUsers.Where(r => !invitationIds.Contains(r.UserID)).ToList();
 
             pageNumber = (page ?? 1);
 
