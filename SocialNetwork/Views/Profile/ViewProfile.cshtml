@@ -46,8 +46,8 @@
                <div class="col-md-6 text-center">
                    <a href="#" title="Send message"><span style="font-size:4em;" class="glyphicon glyphicon-envelope"></span> </a><br />
                </div>
-               <div class="col-md-6 text-center">
-                   <a href="#" title="Send invitation"><span style="font-size:3.5em;" class="glyphicon glyphicon-plus"></span> </a>
+               <div class="col-md-6 text-center send-invite">
+                   <a href="#" data-id="@Model.UserId" title="Send invitation" class="send-invite"><span style="font-size:3.5em;" class="glyphicon glyphicon-plus"></span> </a>
                </div>
            </div>
         </div>
@@ -59,3 +59,27 @@
 <p>
     @Html.ActionLink("Back", "Index", "Home")
 </p>
+
+<script>
+
+    $('.send-invite').on('click', function (e) {
+
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        $.ajax({
+            method: 'POST',
+            url: '/Friend/AddFriend/',
+            dataType: JSON,
+            data: { userId: id },
+            success: function () {
+                alert('OK');
+            }
+
+        })
+
+    })
+
+
+</script>
