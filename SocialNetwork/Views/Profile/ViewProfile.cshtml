@@ -62,3 +62,27 @@
 <p>
     @Html.ActionLink("Back", "Index", "Home")
 </p>
+
+<script>
+
+    $('.send-invite').on('click', function (e) {
+
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        $.ajax({
+            method: 'POST',
+            url: '/Friend/AddFriend/',
+            dataType: JSON,
+            data: { userId: id },
+            success: function () {
+                alert('OK');
+            }
+
+        })
+
+    })
+
+
+</script>

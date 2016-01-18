@@ -100,6 +100,7 @@ namespace SocialNetwork.Controllers
         }
 
         [Authorize]
+        [HttpPost]
         public ActionResult AddFriend(int userId)
         {
             User user = userService.GetById(userId);
