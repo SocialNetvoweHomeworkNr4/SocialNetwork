@@ -55,8 +55,10 @@ namespace SocialNetwork.Controllers
             //dont show friends
             var friendsIds = friendService.GetFriendIDsByUserId(provider.GetUserId());
 
-            allUsers = allUsers.Where(r => friendsIds.Any(u => u != r.UserID) == false).ToList();
-
+            if(friendsIds.Count() == 0)
+                allUsers = allUsers.Where(r => friendsIds.Any(u => u != r.UserID) == false).ToList();
+            else
+                allUsers = allUsers.Where(r => friendsIds.Any(u => u != r.UserID) == true).ToList();
             //dont show invited users
             var t = invitationService.GetInvitationIDsByUserId(provider.GetUserId());
 

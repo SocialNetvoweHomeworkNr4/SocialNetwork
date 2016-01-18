@@ -17,16 +17,13 @@
                     <img class="user-image" src="~/Content/img/default.gif" />
                 }
 
-                @if (ViewContext.RouteData.GetRequiredString("action") == "Discover" && !ViewBag.invitationIds.Contains(user.UserID))
+                @if (ViewContext.RouteData.GetRequiredString("action") == "Discover")
                 {
                     <button class="btn btn-success add-friend" data-userId="@user.UserID"><span class="glyphicon glyphicon-plus"></span></button>
                 }
                 else
                 {
-                    if (!ViewBag.invitationIds.Contains(user.UserID))
-                    {
-                        <button class="btn btn-danger remove-friend" data-userId="@user.UserID"><span class="glyphicon glyphicon-minus"></span></button>
-                    }
+                    <button class="btn btn-danger remove-friend" data-userId="@user.UserID"><span class="glyphicon glyphicon-minus"></span></button>
                 }
 
                 <div class="text-center user-name">
